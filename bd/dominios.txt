@@ -6,9 +6,19 @@ A - Áudio
 V - Vídeo
 G - GIF (?)
 
-Table: perfil
+Table: usuario
 Column: fl_status
 D - Disponível (Online)
 I - Indisponível (Offline)
 A - Ausente
 O - Ocupado (Em reunião, ...)
+
+Tables: usuario, grupo_usuario, grupo
+Column: fl_ativo
+A - Ativo
+I - Inativo
+
+Table: mensagem_destinatario
+Column: fl_lida
+L - Lida
+N - Não lida
