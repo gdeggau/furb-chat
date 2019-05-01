@@ -1,0 +1,14 @@
+Table: mensagem
+Column: fl_tipo_msg
+T - Texto
+I - Imagem (Foto)
+A - Áudio
+V - Vídeo
+G - GIF (?)
+
+Table: perfil
+Column: fl_status
+D - Disponível (Online)
+I - Indisponível (Offline)
+A - Ausente
+O - Ocupado (Em reunião, ...)
