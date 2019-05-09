@@ -1,7 +1,6 @@
 package br.com.tomaggau.pzi.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +15,7 @@ public class UsuarioService {
 	UsuarioRepository usuarioRepository;
 	
 	//Criar usuario
-	public UsuarioEntity criarUsuario(UsuarioEntity usuario) {
+	public UsuarioEntity salvarUsuario(UsuarioEntity usuario) {
 		return usuarioRepository.save(usuario);
 	}
 	
@@ -31,8 +30,9 @@ public class UsuarioService {
 	}
 	
 	//Deletar usuario
-	public void deletarUsuario(Long id) {
-		usuarioRepository.deleteById(id);
+	public void deletarUsuario(UsuarioEntity usuario) {
+		usuario.setAtivo(false);
+		usuarioRepository.save(usuario);
 	}
 	
 }
