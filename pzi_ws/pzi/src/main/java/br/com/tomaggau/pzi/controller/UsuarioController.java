@@ -13,31 +13,33 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.tomaggau.pzi.entity.UsuarioEntity;
+import br.com.tomaggau.pzi.model.Usuario;
 import br.com.tomaggau.pzi.service.UsuarioService;
 
 @RestController
+@RequestMapping("/pzi")
 public class UsuarioController {
 	
 	@Autowired
 	private UsuarioService usuarioService;
 	
 	@PostMapping("/usuarios")
-	public ResponseEntity<UsuarioEntity> criarUsuario(@Valid @RequestBody UsuarioEntity usuarioEntity) {
-		return ResponseEntity.ok().body(usuarioService.salvarUsuario(usuarioEntity));
+	public ResponseEntity<Usuario> salvarUsuario(@Valid @RequestBody Usuario usuarioEntity) {
+		return ResponseEntity.ok().body(usuarioService.save(usuarioEntity));
 	}
 	
 	@GetMapping("/usuarios")
-	public ResponseEntity<List<UsuarioEntity>> listarUsuarios() {
-		return ResponseEntity.ok().body(usuarioService.listarUsuarios());
+	public ResponseEntity<List<Usuario>> listarUsuarios() {
+		return ResponseEntity.ok().body(usuarioService.findAll());
 	}
 	
 	@GetMapping("/usuarios/{id}")
-	public ResponseEntity<UsuarioEntity> buscarClientePorId(@PathVariable Long id) {
+	public ResponseEntity<Usuario> buscarUsuario(@PathVariable Long id) {
 		
-		UsuarioEntity usuario = usuarioService.buscarUsuario(id);
+		Usuario usuario = usuarioService.findById(id);
 		
 		if(usuario == null)
 			return ResponseEntity.notFound().build();
@@ -46,27 +48,27 @@ public class UsuarioController {
 	}
 	
 	@PutMapping("/usuarios/{id}")
-	public ResponseEntity<UsuarioEntity> atualizarUsuario(@PathVariable Long id, @RequestBody UsuarioEntity usuarioDetalhes) {
+	public ResponseEntity<Usuario> atualizarUsuario(@PathVariable Long id, @Valid @RequestBody Usuario usuarioDetalhes) {
 		System.out.println("entrou no update");
-		UsuarioEntity usuario = usuarioService.buscarUsuario(id);
+		Usuario usuario = usuarioService.findById(id);
 		if(usuario == null)
 			return ResponseEntity.notFound().build();
 
 		BeanUtils.copyProperties(usuarioDetalhes, usuario, "id");
-		UsuarioEntity atualizarUsuario = usuarioService.salvarUsuario(usuario);
+		Usuario atualizarUsuario = usuarioService.save(usuario);
 		return ResponseEntity.ok().body(atualizarUsuario);
 	}
 	
 	@DeleteMapping("/usuarios/{id}")
 	//@PathVariable significa que o parametro ID vai vir no path da requisicao. ex.:  cliente/3
-	public ResponseEntity<UsuarioEntity> deletarUsuario(@PathVariable Long id) {
+	public ResponseEntity<Usuario> deletarUsuario(@PathVariable Long id) {
 		
-		UsuarioEntity usuario = usuarioService.buscarUsuario(id);
+		Usuario usuario = usuarioService.findById(id);
 		
 		if(usuario == null)
 			return ResponseEntity.notFound().build();
 		
-		usuarioService.deletarUsuario(usuario);
+		usuarioService.delete(usuario);
 		
 		return ResponseEntity.ok().build();
 	}
