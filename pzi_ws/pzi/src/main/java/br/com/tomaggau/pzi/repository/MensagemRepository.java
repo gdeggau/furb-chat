@@ -2,8 +2,10 @@ package br.com.tomaggau.pzi.repository;
 
 import java.util.List;
 
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import br.com.tomaggau.pzi.model.Mensagem;
@@ -28,6 +30,6 @@ public interface MensagemRepository extends JpaRepository<Mensagem, Long>{
 				+ " OR (mens.id_usuario_envio = :idUser2 AND mens_des.id_usuario_destino = :idUser1)" 
 				+ " ORDER BY mens.dt_envio;", nativeQuery = true)
 	//tanto faz qual user passar nos parametros
-	List<Mensagem> getMensagensUsuariosOrdenadas(Long idUser1, Long idUser2);
+	List<Mensagem> getMensagensTrocadasUsuario(@Param("idUser1") Long idUser1, @Param("idUser2") Long idUser2);
 
 }

@@ -51,8 +51,8 @@ public class MensagemService {
 		return mensagemRepository.getMensagensUsuario(id, usuario.getIdUsuario());
 	}
 	
-	public List<Mensagem> getMensagensUsuariosOrdenadas(Long id, Usuario usuario) {
-		return mensagemRepository.getMensagensUsuario(id, usuario.getIdUsuario());
+	public List<Mensagem> getMensagensTrocadasUsuario(Long id, Usuario usuario) {
+		return mensagemRepository.getMensagensTrocadasUsuario(id, usuario.getIdUsuario());
 	}
 	
 	/*
