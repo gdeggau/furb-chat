@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="usuario")
+@Table(name="usuarios")
 public class Usuario {
 	
 	@Id
@@ -50,6 +50,9 @@ public class Usuario {
 	
 	@Column(name="fl_ativo")
 	private char flAtivo;
+	
+	@Column(name="dt_inativacao")
+	private LocalDateTime dtInativacao;
 	
 	//Getters & Setters
 
@@ -147,6 +150,14 @@ public class Usuario {
 
 	public void setFlAtivo(char flAtivo) {
 		this.flAtivo = flAtivo;
+	}
+
+	public LocalDateTime getDtInativacao() {
+		return dtInativacao;
+	}
+
+	public void setDtInativacao(LocalDateTime dtInativacao) {
+		this.dtInativacao = dtInativacao;
 	}
 
 	
