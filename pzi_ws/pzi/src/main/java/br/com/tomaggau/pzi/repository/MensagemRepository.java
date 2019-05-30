@@ -14,7 +14,7 @@ import br.com.tomaggau.pzi.model.Mensagem;
 public interface MensagemRepository extends JpaRepository<Mensagem, Long>{
 	
 	@Query(value = "SELECT * "
-				+ " FROM mensagem mens" 
+				+ " FROM mensagens mens" 
 				+ " INNER JOIN mensagem_destinatario mens_des"
 				+ " ON mens.id_mensagem = mens_des.id_mensagem"
 				+ " WHERE mens.id_usuario_envio = ? "
@@ -23,8 +23,8 @@ public interface MensagemRepository extends JpaRepository<Mensagem, Long>{
 	
 	//ta funcionando ainda, tem que ver as paradas do parametros
 	@Query(value = "SELECT * "
-				+ " FROM mensagem mens" 
-				+ " INNER JOIN mensagem_destinatario mens_des" 
+				+ " FROM mensagens mens" 
+				+ " INNER JOIN mensagens_destinatario mens_des" 
 				+ " ON mens.id_mensagem = mens_des.id_mensagem" 
 				+ " WHERE (mens.id_usuario_envio = :idUser1 AND mens_des.id_usuario_destino = :idUser2)" 
 				+ " OR (mens.id_usuario_envio = :idUser2 AND mens_des.id_usuario_destino = :idUser1)" 

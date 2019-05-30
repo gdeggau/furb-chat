@@ -32,10 +32,10 @@ public class MensagemController {
 	}
 	
 	//id de quem eu quero ver as mensagens
-	@GetMapping("/mensagens/usuario/{id}")
-	public ResponseEntity<List<Mensagem>> getMensagensRecebidasUsuario(@PathVariable Long id, @Valid @RequestBody Usuario usuarioLogado) {
-		return ResponseEntity.ok().body(mensagemService.getMensagensUsuario(id, usuarioLogado));
-	}
+	//@GetMapping("/mensagens/usuario/{id}")
+	//public ResponseEntity<List<Mensagem>> getMensagensRecebidasUsuario(@PathVariable Long id, @Valid @RequestBody Usuario usuarioLogado) {
+		//return ResponseEntity.ok().body(mensagemService.getMensagensUsuario(id, usuarioLogado));
+	//}
 	
 	//id de quem eu quero ver as mensagens
 	@GetMapping("/mensagens/usuario/{id}")
