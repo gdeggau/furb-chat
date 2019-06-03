@@ -26,6 +26,10 @@ public class MensagemDestinatario {
 	@JoinColumn(name="id_usuario_destino")
 	private Usuario idUsuarioDestino;
 	
+	@ManyToOne
+	@JoinColumn(name="id_grupos_usuarios_destino")
+	private GrupoUsuario idGruposUsuariosDestino;
+	
 	@Column(name="fl_lida")
 	private char flLida;
 	
@@ -62,5 +66,15 @@ public class MensagemDestinatario {
 	public void setFlLida(char flLida) {
 		this.flLida = flLida;
 	}
+
+	public GrupoUsuario getIdGruposUsuariosDestino() {
+		return idGruposUsuariosDestino;
+	}
+
+	public void setIdGruposUsuariosDestino(GrupoUsuario idGruposUsuariosDestino) {
+		this.idGruposUsuariosDestino = idGruposUsuariosDestino;
+	}
+
+	
 	
 }

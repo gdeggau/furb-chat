@@ -31,6 +31,11 @@ public class MensagemController {
 		return ResponseEntity.ok().body(mensagemService.save(id, mensagem, Destino.USUARIO));
 	}
 	
+	@PostMapping("/mensagens/grupo/{id}")
+	public ResponseEntity<Mensagem> enviarMensagemGrupo(@PathVariable Long id, @Valid @RequestBody Mensagem mensagem){
+		return ResponseEntity.ok().body(mensagemService.save(id, mensagem, Destino.GRUPO));
+	}
+	
 	//id de quem eu quero ver as mensagens
 	//@GetMapping("/mensagens/usuario/{id}")
 	//public ResponseEntity<List<Mensagem>> getMensagensRecebidasUsuario(@PathVariable Long id, @Valid @RequestBody Usuario usuarioLogado) {
