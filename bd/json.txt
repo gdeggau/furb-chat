@@ -1,0 +1,232 @@
+//criar usuario
+localhost:8080/pzi/usuario/
+{
+	"nmUsuario": "Nicoals",
+	"nmExibicao": "dasdasdad",
+	"dtNascimento": "1998-06-13T00:00",
+	"nrTelefone": "47996542384",
+	"dsEmail":"1213123r@hotmail.com",
+	"dsSenha":"5sdqdd",
+	"flStatus":"A"
+}
+
+
+//enviar mensagem usuario
+localhost:8080/pzi/mensagens/usuario/2
+{
+	"dsMensagem": "Eae Cleber",
+	"idUsuarioEnvio": {
+		"id_usuario": 1
+	}
+}
+
+//enviar mensagem grupo
+localhost:8080/pzi/mensagens/grupo/1
+{
+	"dsMensagem": "quem ai vai me carregar no trabalho???",
+	"idUsuarioEnvio": {
+		"idUsuario": 2,
+        "nmUsuario": "Cleber",
+        "nmExibicao": "Cleber Tomazoni",
+        "dtNascimento": "1998-06-13T00:00:00",
+        "nrTelefone": "47996542384",
+        "dsEmail": "cleber@hotmail.com",
+        "dsSenha": "54242312",
+        "dtCadastro": "2019-05-13T14:54:39",
+        "dsCaminhoFoto": "",
+        "dsFrasePerfil": "",
+        "flStatus": "A",
+        "flAtivo": "A",
+        "dtInativacao": null
+	}
+}
+
+//ler mensagens
+localhost:8080/pzi/mensagens/usuario/2
+{
+	"idUsuario":"1",
+	"nmUsuario":"Gabriel",
+	"nmExibicao":"Gabriel Deggau Schmidt"
+}
+
+//criar grupo
+localhost:8080/pzi/grupos
+{
+	"nmGrupo":"Furb 2019",
+	"dsGrupo":"Bcc projeto de software",
+	"idUsuarioCadastro":{
+		"idUsuario": 1,
+	    "nmUsuario": "Gabriel",
+	    "nmExibicao": "Gabriel Deggau Schmidt",
+	    "dtNascimento": "1998-04-23T00:00:00",
+	    "nrTelefone": "47999988052",
+	    "dsEmail": "gabrieldeggau@hotmail.com",
+	    "dsSenha": "12345",
+	    "dtCadastro": "2019-05-13T14:47:44",
+	    "dsCaminhoFoto": "",
+	    "dsFrasePerfil": "",
+	    "flStatus": "D",
+	    "flAtivo": "A",
+	    "dtInativacao": null
+	}
+}
+
+//adcionar ao grupo
+localhost:8080/pzi/grupos/usuarios/2
+{
+	"idGrupo":{
+		"idGrupo": 1,
+        "nmGrupo": "Furb 2019",
+        "dsGrupo": "Bcc projeto de software",
+        "idUsuarioCadastro": {
+            "idUsuario": 1,
+            "nmUsuario": "Gabriel",
+            "nmExibicao": "Gabriel Deggau Schmidt",
+            "dtNascimento": "1998-04-23T00:00:00",
+            "nrTelefone": "47999988052",
+            "dsEmail": "gabrieldeggau@hotmail.com",
+            "dsSenha": "12345",
+            "dtCadastro": "2019-05-13T14:47:44",
+            "dsCaminhoFoto": "",
+            "dsFrasePerfil": "",
+            "flStatus": "D",
+            "flAtivo": "A",
+            "dtInativacao": null
+        },
+        "dtCadastro": "2019-06-01T21:00:29",
+        "flAtivo": "A",
+        "dtInativacao": null
+	}
+}
+
+
+
+
+-------- usuarios ------
+[
+    {
+        "idUsuario": 1,
+        "nmUsuario": "Gabriel",
+        "nmExibicao": "Gabriel Deggau Schmidt",
+        "dtNascimento": "1998-04-23T00:00:00",
+        "nrTelefone": "47999988052",
+        "dsEmail": "gabrieldeggau@hotmail.com",
+        "dsSenha": "12345",
+        "dtCadastro": "2019-05-13T14:47:44",
+        "dsCaminhoFoto": "",
+        "dsFrasePerfil": "",
+        "flStatus": "D",
+        "flAtivo": "A",
+        "dtInativacao": null
+    },
+    {
+        "idUsuario": 2,
+        "nmUsuario": "Cleber",
+        "nmExibicao": "Cleber Tomazoni",
+        "dtNascimento": "1998-06-13T00:00:00",
+        "nrTelefone": "47996542384",
+        "dsEmail": "cleber@hotmail.com",
+        "dsSenha": "54242312",
+        "dtCadastro": "2019-05-13T14:54:39",
+        "dsCaminhoFoto": "",
+        "dsFrasePerfil": "",
+        "flStatus": "A",
+        "flAtivo": "A",
+        "dtInativacao": null
+    },
+    {
+        "idUsuario": 3,
+        "nmUsuario": "Nicoals",
+        "nmExibicao": "dasdasdad",
+        "dtNascimento": "1998-06-13T00:00:00",
+        "nrTelefone": "47996542384",
+        "dsEmail": "1213123r@hotmail.com",
+        "dsSenha": "5sdqdd",
+        "dtCadastro": "2019-05-13T14:55:32",
+        "dsCaminhoFoto": "",
+        "dsFrasePerfil": "",
+        "flStatus": "A",
+        "flAtivo": "A",
+        "dtInativacao": null
+    },
+    {
+        "idUsuario": 4,
+        "nmUsuario": "Bento",
+        "nmExibicao": "Bento Gabriel",
+        "dtNascimento": "1999-06-13T00:00:00",
+        "nrTelefone": "47996543619",
+        "dsEmail": "bentor@hotmail.com",
+        "dsSenha": "tnc",
+        "dtCadastro": "2019-05-16T20:34:52",
+        "dsCaminhoFoto": "",
+        "dsFrasePerfil": "",
+        "flStatus": "A",
+        "flAtivo": "A",
+        "dtInativacao": null
+    },
+    {
+        "idUsuario": 5,
+        "nmUsuario": "Ayrton",
+        "nmExibicao": "Ayrton Senna",
+        "dtNascimento": "1980-06-13T00:00:00",
+        "nrTelefone": "47996543619",
+        "dsEmail": "senna@hotmail.com",
+        "dsSenha": "olhaaqui",
+        "dtCadastro": "2019-05-16T20:35:24",
+        "dsCaminhoFoto": "",
+        "dsFrasePerfil": "",
+        "flStatus": "A",
+        "flAtivo": "A",
+        "dtInativacao": null
+    }
+]
+
+------- grupos ----------
+[
+    {
+        "idGrupo": 1,
+        "nmGrupo": "Furb 2019",
+        "dsGrupo": "Bcc projeto de software",
+        "idUsuarioCadastro": {
+            "idUsuario": 1,
+            "nmUsuario": "Gabriel",
+            "nmExibicao": "Gabriel Deggau Schmidt",
+            "dtNascimento": "1998-04-23T00:00:00",
+            "nrTelefone": "47999988052",
+            "dsEmail": "gabrieldeggau@hotmail.com",
+            "dsSenha": "12345",
+            "dtCadastro": "2019-05-13T14:47:44",
+            "dsCaminhoFoto": "",
+            "dsFrasePerfil": "",
+            "flStatus": "D",
+            "flAtivo": "A",
+            "dtInativacao": null
+        },
+        "dtCadastro": "2019-06-01T21:00:29",
+        "flAtivo": "A",
+        "dtInativacao": null
+    },
+    {
+        "idGrupo": 2,
+        "nmGrupo": "Trabalhos",
+        "dsGrupo": "Galera que faz trabalho",
+        "idUsuarioCadastro": {
+            "idUsuario": 2,
+            "nmUsuario": "Cleber",
+            "nmExibicao": "Cleber Tomazoni",
+            "dtNascimento": "1998-06-13T00:00:00",
+            "nrTelefone": "47996542384",
+            "dsEmail": "cleber@hotmail.com",
+            "dsSenha": "54242312",
+            "dtCadastro": "2019-05-13T14:54:39",
+            "dsCaminhoFoto": "",
+            "dsFrasePerfil": "",
+            "flStatus": "A",
+            "flAtivo": "A",
+            "dtInativacao": null
+        },
+        "dtCadastro": "2019-06-01T21:02:19",
+        "flAtivo": "A",
+        "dtInativacao": null
+    }
+]
