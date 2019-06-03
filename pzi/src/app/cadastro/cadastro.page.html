@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Cadastro</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form>
+    <input type="text" placeholder="Nome completo">
+    <input type="text" placeholder="Nome de exibição">
+    <input type="date" placeholder="Data de nascimento">
+    <input type="number" placeholder="Número de telefone">
+    <input type="text" placeholder="E-mail">
+    <input type="password" placeholder="Senha">
+    <input type="password" placeholder="Confirmação de senha">
+    <input type="file"><!--Foto de perfil-->
+    <textarea placeholder="Frase de perfil"></textarea>
+    <input type="submit" (click)="postUsuario()" value="Concluir cadastro">
+  </form>
+</ion-content>
