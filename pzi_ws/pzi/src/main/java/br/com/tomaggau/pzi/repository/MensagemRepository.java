@@ -13,7 +13,7 @@ import br.com.tomaggau.pzi.model.Mensagem;
 @Repository
 public interface MensagemRepository extends JpaRepository<Mensagem, Long>{
 	
-	@Query(value = "SELECT * "
+	@Query(value = "SELECT *"
 				+ " FROM mensagens mens" 
 				+ " INNER JOIN mensagem_destinatario mens_des"
 				+ " ON mens.id_mensagem = mens_des.id_mensagem"
@@ -22,7 +22,7 @@ public interface MensagemRepository extends JpaRepository<Mensagem, Long>{
 	List<Mensagem> getMensagensUsuario(Long idEnvio, Long idDestino);
 	
 	//ta funcionando ainda, tem que ver as paradas do parametros
-	@Query(value = "SELECT * "
+	@Query(value = "SELECT *"
 				+ " FROM mensagens mens" 
 				+ " INNER JOIN mensagens_destinatario mens_des" 
 				+ " ON mens.id_mensagem = mens_des.id_mensagem" 
@@ -31,5 +31,18 @@ public interface MensagemRepository extends JpaRepository<Mensagem, Long>{
 				+ " ORDER BY mens.dt_envio;", nativeQuery = true)
 	//tanto faz qual user passar nos parametros
 	List<Mensagem> getMensagensTrocadasUsuario(@Param("idUser1") Long idUser1, @Param("idUser2") Long idUser2);
+	
+	@Query(value="SELECT mens.* "
+			  + " FROM mensagens mens" 
+			  + " INNER JOIN mensagens_destinatario mens_des" 
+			  + " ON mens.id_mensagem = mens_des.id_mensagem" 
+			  + " INNER JOIN grupos_usuarios gp_user"
+			  + " ON gp_user.id_grupos_usuarios = mens_des.id_grupos_usuarios_destino" 
+			  + " INNER JOIN grupos gp"
+			  + " ON gp.id_grupo = gp_user.id_grupo"
+			  + " WHERE gp.id_grupo = ? "
+			  + " GROUP BY mens.id_mensagem, mens.ds_mensagem "
+			  + " ORDER BY mens.dt_envio;", nativeQuery = true)
+	List<Mensagem> getMensagensTrocadasGrupo(Long idGrupo);
 
 }

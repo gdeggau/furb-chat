@@ -3,6 +3,8 @@ package br.com.tomaggau.pzi.service;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -74,6 +76,10 @@ public class MensagemService {
 	
 	public List<Mensagem> getMensagensTrocadasUsuario(Long id, Usuario usuario) {
 		return mensagemRepository.getMensagensTrocadasUsuario(id, usuario.getIdUsuario());
+	}
+
+	public List<Mensagem> getMensagensTrocadasGrupo(Long id, @Valid Usuario usuarioLogado) {
+		return mensagemRepository.getMensagensTrocadasGrupo(id);
 	}
 	
 	/*

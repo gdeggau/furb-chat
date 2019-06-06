@@ -47,5 +47,11 @@ public class MensagemController {
 	public ResponseEntity<List<Mensagem>> getMensagensTrocadasUsuario(@PathVariable Long id, @Valid @RequestBody Usuario usuarioLogado) {
 		return ResponseEntity.ok().body(mensagemService.getMensagensTrocadasUsuario(id, usuarioLogado));
 	}
+	
+	//id do grupo que quero ver as mensagens
+	@GetMapping("/mensagens/grupo/{id}")
+	public ResponseEntity<List<Mensagem>> getMensagensTrocadasGrupo(@PathVariable Long id, @Valid @RequestBody Usuario usuarioLogado){
+		return ResponseEntity.ok().body(mensagemService.getMensagensTrocadasGrupo(id, usuarioLogado));
+	}
 
 }
