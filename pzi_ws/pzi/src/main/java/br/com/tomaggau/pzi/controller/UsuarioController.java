@@ -28,6 +28,7 @@ public class UsuarioController {
 	private UsuarioService usuarioService;
 	
 	@PostMapping("/usuarios")
+	@CrossOrigin(origins = {"http://localhost:8100", "http://localhost:8080"})
 	public ResponseEntity<Usuario> salvarUsuario(@Valid @RequestBody Usuario usuarioEntity) {
 		return ResponseEntity.ok().body(usuarioService.save(usuarioEntity));
 	}

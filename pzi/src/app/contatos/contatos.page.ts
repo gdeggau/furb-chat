@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from '@ionic/angular';
 import { ContatosService } from 'src/providers/contatos-service';
 
 @Component({
@@ -10,8 +9,7 @@ import { ContatosService } from 'src/providers/contatos-service';
 export class ContatosPage {
   private contatos: Array<any>;
 
-  constructor(/*public navCtrl: NavController, public navParams: NavParams,
-              */public contatosService: ContatosService) {
+  constructor(public contatosService: ContatosService) {
   }
 
   ionViewDidEnter() {

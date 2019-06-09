@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
 import { CadastroPage } from './cadastro.page';
 import { CadastroService } from 'src/providers/cadastro-service';
+import { UtilsService } from '../commons/utils.service';
 
 const routes: Routes = [
   {
@@ -20,10 +21,13 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    ReactiveFormsModule
   ],
   providers: [
-    CadastroService
+    CadastroService,
+    FormBuilder,
+    UtilsService
   ],
   declarations: [CadastroPage]
 })

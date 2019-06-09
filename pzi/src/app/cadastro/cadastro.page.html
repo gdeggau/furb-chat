@@ -5,16 +5,16 @@
 </ion-header>
 
 <ion-content>
-  <form>
-    <input type="text" placeholder="Nome completo">
-    <input type="text" placeholder="Nome de exibição">
-    <input type="date" placeholder="Data de nascimento">
-    <input type="number" placeholder="Número de telefone">
-    <input type="text" placeholder="E-mail">
-    <input type="password" placeholder="Senha">
-    <input type="password" placeholder="Confirmação de senha">
-    <input type="file"><!--Foto de perfil-->
-    <textarea placeholder="Frase de perfil"></textarea>
-    <input type="submit" (click)="postUsuario()" value="Concluir cadastro">
+  <form [formGroup]="formUsuario" (ngSubmit)="cadastrar()">
+    <input type="text" formControlName="nmUsuario" placeholder="Nome completo">
+    <input type="text" formControlName="nmExibicao" placeholder="Nome de exibição">
+    <input type="date" formControlName="dtNascimento" placeholder="Data de nascimento">
+    <input type="number" formControlName="nrTelefone" placeholder="Número de telefone">
+    <input type="text" formControlName="dsEmail" placeholder="E-mail">
+    <input type="password" formControlName="dsSenha" placeholder="Senha">
+    <!--input type="password" placeholder="Confirmação de senha">
+    <input type="file"--><!--Foto de perfil-->
+    <textarea formControlName="dsFrasePerfil" placeholder="Frase de perfil"></textarea>
+    <input type="submit" value="Concluir cadastro">
   </form>
 </ion-content>
