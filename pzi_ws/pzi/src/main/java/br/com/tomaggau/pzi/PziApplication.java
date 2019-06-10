@@ -11,5 +11,10 @@ public class PziApplication {
 		// TODO Auto-generated method stub
 		SpringApplication.run(PziApplication.class, args);
 	}
+	
+	/*@Bean
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder(12);
+	}*/
 
 }

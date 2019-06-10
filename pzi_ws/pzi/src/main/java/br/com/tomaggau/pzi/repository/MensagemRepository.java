@@ -44,5 +44,20 @@ public interface MensagemRepository extends JpaRepository<Mensagem, Long>{
 			  + " GROUP BY mens.id_mensagem, mens.ds_mensagem "
 			  + " ORDER BY mens.dt_envio;", nativeQuery = true)
 	List<Mensagem> getMensagensTrocadasGrupo(Long idGrupo);
+	
+	@Query(value="select mens.id_mensagem, mens.ds_mensagem, mens2.dt_envio, mens.fl_tipo_mensagem, mens.id_usuario_envio"
+			  + " from ("
+			  + " 		select max(dt_envio) dt_envio, id_usuario_envio"
+			  + " 		from mensagens"
+			  + " 		group by id_usuario_envio"
+			  + " ) mens2"
+			  + " inner join mensagens mens"
+			  + " on mens.id_usuario_envio = mens2.id_usuario_envio and mens.dt_envio = mens2.dt_envio"
+			  + " inner join mensagens_destinatario mens_dest"
+			  + " on mens.id_mensagem = mens_dest.id_mensagem"
+			  + " where mens_dest.id_usuario_destino = ?"
+			  + " group by mens.id_usuario_envio"
+			  + " order by mens.dt_envio desc",nativeQuery = true)
+	List<Mensagem> getMensagensRecebidas(Long id);
 
 }

@@ -53,5 +53,11 @@ public class MensagemController {
 	public ResponseEntity<List<Mensagem>> getMensagensTrocadasGrupo(@PathVariable Long id, @Valid @RequestBody Usuario usuarioLogado){
 		return ResponseEntity.ok().body(mensagemService.getMensagensTrocadasGrupo(id, usuarioLogado));
 	}
+	
+	//minhas mensagens
+	@GetMapping("/mensagens")
+	public ResponseEntity<List<Mensagem>> getMensagensRecebidas(@Valid @RequestBody Usuario usuarioLogado){
+		return ResponseEntity.ok().body(mensagemService.getMensagensRecebidas(usuarioLogado));
+	}
 
 }

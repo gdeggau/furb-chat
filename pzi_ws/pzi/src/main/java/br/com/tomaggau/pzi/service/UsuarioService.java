@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import br.com.tomaggau.pzi.model.Usuario;
@@ -37,6 +38,10 @@ public class UsuarioService {
 		usuario.setFlAtivo('I');
 		usuario.setDtInativacao(LocalDateTime.now());
 		usuarioRepository.save(usuario);
+	}
+	
+	public Usuario findByNmUsuario(String nome) {
+		return usuarioRepository.findByNmUsuario(nome);
 	}
 	
 }

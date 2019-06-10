@@ -202,14 +202,14 @@ localhost:8080/pzi/grupos/usuarios/2
             "flAtivo": "A",
             "dtInativacao": null
         },
-        "dtCadastro": "2019-06-01T21:00:29",
+        "dtCadastro": "2019-06-02T15:33:28",
         "flAtivo": "A",
         "dtInativacao": null
     },
     {
         "idGrupo": 2,
-        "nmGrupo": "Trabalhos",
-        "dsGrupo": "Galera que faz trabalho",
+        "nmGrupo": "Trabalhos furb",
+        "dsGrupo": "",
         "idUsuarioCadastro": {
             "idUsuario": 2,
             "nmUsuario": "Cleber",
@@ -225,7 +225,7 @@ localhost:8080/pzi/grupos/usuarios/2
             "flAtivo": "A",
             "dtInativacao": null
         },
-        "dtCadastro": "2019-06-01T21:02:19",
+        "dtCadastro": "2019-06-04T17:40:59",
         "flAtivo": "A",
         "dtInativacao": null
     }

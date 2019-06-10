@@ -38,7 +38,6 @@ public class MensagemService {
 		
 		mensagem.setDtEnvio(LocalDateTime.now());
 		mensagem.setFlTipoMensagem('T');
-		mensagem.setIdUsuarioEnvio(usuarioService.findById(mensagem.getIdUsuarioEnvio().getIdUsuario()));
 		Mensagem mensagemSalva = mensagemRepository.save(mensagem);
 		
 		MensagemDestinatario destinatario;
@@ -81,31 +80,9 @@ public class MensagemService {
 	public List<Mensagem> getMensagensTrocadasGrupo(Long id, @Valid Usuario usuarioLogado) {
 		return mensagemRepository.getMensagensTrocadasGrupo(id);
 	}
-	
-	/*
-	@Autowired
-	UsuarioRepository usuarioRepository;
-	
-	//Criar usuario
-	public UsuarioEntity salvarUsuario(UsuarioEntity usuario) {
-		return usuarioRepository.save(usuario);
-	}
-	
-	//Listar todos os usuarios
-	public List<UsuarioEntity> listarUsuarios() {
-		return usuarioRepository.findAll();
-	}
-	
-	//Buscar usuario
-	public UsuarioEntity buscarUsuario(Long usuarioId) {
-		return usuarioRepository.findById(usuarioId).orElse(null);
-	}
-	
-	//Deletar usuario
-	public void deletarUsuario(UsuarioEntity usuario) {
-		usuario.setAtivo(false);
-		usuarioRepository.save(usuario);
-	}
-	*/
 
+	public List<Mensagem> getMensagensRecebidas(@Valid Usuario usuarioLogado) {
+		return mensagemRepository.getMensagensRecebidas(usuarioLogado.getIdUsuario());
+	}
+	
 }
