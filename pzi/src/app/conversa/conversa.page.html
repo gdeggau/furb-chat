@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      <a href="tabs"><ion-icon name="arrow-back"></ion-icon></a>
+      <img src="../../assets/avatar/luke.png">
+      <ion-label>
+        <!--p-->Gabriel Deggau<!--/p-->
+        <!--p>Ocupado</p-->
+      </ion-label>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <table>
+    <tr *ngFor="let mensagem of mensagens">
+      <td *ngIf="mensagem.idUsuarioEnvio.idUsuario == 1">
+        <p class="msg minha-msg">{{mensagem.dsMensagem}}</p>
+      </td>
+      <td *ngIf="mensagem.idUsuarioEnvio.idUsuario == 3">
+        <p class="msg">{{mensagem.dsMensagem}}</p>
+      </td>
+    </tr>
+  </table>
+</ion-content>
+
+<ion-footer>
+  <input type="text" placeholder="Digite aqui...">
+</ion-footer>

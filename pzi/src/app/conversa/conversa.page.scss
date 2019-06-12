@@ -1,0 +1,29 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+img {
+    width: 40px;
+}
+ion-label {
+    float: right;
+}
+table {
+    width: 100%;
+}
+.msg {
+    margin: 8px 8px 0px 8px;
+    padding: 10px;
+    border-radius: 10px;
+    float: left;
+    background-color: rgba(170, 80, 80, 0.5);
+}
+.minha-msg {
+    float: right;
+    background-color: rgba(120, 120, 70, 0.5);
+}
+input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+}

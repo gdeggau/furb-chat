@@ -73,8 +73,9 @@ public class MensagemService {
 		return mensagemRepository.getMensagensUsuario(id, usuario.getIdUsuario());
 	}
 	
+	/* VALOR FIXADO APENAS PARA TESTES */
 	public List<Mensagem> getMensagensTrocadasUsuario(Long id, Usuario usuario) {
-		return mensagemRepository.getMensagensTrocadasUsuario(id, usuario.getIdUsuario());
+		return mensagemRepository.getMensagensTrocadasUsuario(id, 3L/*usuario.getIdUsuario()*/);
 	}
 
 	public List<Mensagem> getMensagensTrocadasGrupo(Long id, @Valid Usuario usuarioLogado) {

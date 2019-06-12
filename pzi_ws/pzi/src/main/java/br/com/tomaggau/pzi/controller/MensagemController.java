@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,6 +21,7 @@ import br.com.tomaggau.pzi.service.MensagemService;
 
 @RestController
 @RequestMapping("/pzi")
+@CrossOrigin(origins = {"http://localhost:8100", "http://localhost:8080"})
 public class MensagemController {
 	
 	@Autowired
@@ -43,9 +45,10 @@ public class MensagemController {
 	//}
 	
 	//id de quem eu quero ver as mensagens
+	/* VALORES FIXADOS APENAS PARA TESTES */
 	@GetMapping("/mensagens/usuario/{id}")
-	public ResponseEntity<List<Mensagem>> getMensagensTrocadasUsuario(@PathVariable Long id, @Valid @RequestBody Usuario usuarioLogado) {
-		return ResponseEntity.ok().body(mensagemService.getMensagensTrocadasUsuario(id, usuarioLogado));
+	public ResponseEntity<List<Mensagem>> getMensagensTrocadasUsuario(@PathVariable Long id/*, @Valid @RequestBody Usuario usuarioLogado*/) {
+		return ResponseEntity.ok().body(mensagemService.getMensagensTrocadasUsuario(id, null/*usuarioLogado*/));
 	}
 	
 	//id do grupo que quero ver as mensagens
