@@ -14,18 +14,18 @@ export class CadastroService {
             headers: this.utils.getDefaultHeaders()
         };
         let usu = JSON.stringify(usuario);*/
-        let params = {
+        let body = {
             nmUsuario: usuario.nmUsuario,
             nmExibicao: usuario.nmExibicao,
             dtNascimento: usuario.dtNascimento,
             nrTelefone: usuario.nrTelefone,
             dsEmail: usuario.dsEmail,
             dsSenha: usuario.dsSenha,
-            //dsCaminhoFoto: '',
+            dsCaminhoFoto: usuario.dsCaminhoFoto,
             dsFrasePerfil: usuario.dsFrasePerfil,
             flStatus: 'D'
         }
-        this.http.post(AppConfigs.API_ENDPOINT + '/usuarios', params).
+        this.http.post(AppConfigs.API_ENDPOINT + '/usuarios', body).
         //this.http.post(AppConfigs.API_ENDPOINT + '/usuarios', usu, httpOptions).
         subscribe(res => {
             console.log(res);

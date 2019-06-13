@@ -11,4 +11,19 @@ export class ConversaService {
     getConversa(): Observable<any> {
         return this.http.get(AppConfigs.API_ENDPOINT + '/mensagens/usuario/1/3');
     }
+
+    postMensagemTexto(mensagem: any) {
+        let body = {
+            dsMensagem: mensagem.dsMensagem,
+            idUsuarioEnvio: mensagem.idUsuarioEnvio,
+            dtEnvio: mensagem.dtEnvio,
+            flTipoMensagem: 'T'
+        }
+        this.http.post(AppConfigs.API_ENDPOINT + '/mensagens/usuario/1', body).
+        subscribe(res => {
+            console.log(res);
+        }, error => {
+            console.log(error);
+        });
+    }
 }

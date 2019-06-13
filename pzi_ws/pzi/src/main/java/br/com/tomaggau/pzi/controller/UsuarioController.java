@@ -22,7 +22,7 @@ import br.com.tomaggau.pzi.service.UsuarioService;
 
 @RestController
 @RequestMapping("/pzi")
-@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:8080"})
+@CrossOrigin(origins = {"http://localhost:8100", "http://localhost:8080"})
 public class UsuarioController {
 	
 	@Autowired
