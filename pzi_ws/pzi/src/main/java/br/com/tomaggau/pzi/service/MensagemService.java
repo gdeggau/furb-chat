@@ -73,17 +73,16 @@ public class MensagemService {
 		return mensagemRepository.getMensagensUsuario(id, usuario.getIdUsuario());
 	}
 	
-	/* VALOR FIXADO APENAS PARA TESTES */
-	public List<Mensagem> getMensagensTrocadasUsuario(Long id, Usuario usuario) {
-		return mensagemRepository.getMensagensTrocadasUsuario(id, 3L/*usuario.getIdUsuario()*/);
+	public List<Mensagem> getMensagensTrocadasUsuario(Long idOrigem, Long idDestino) {
+		return mensagemRepository.getMensagensTrocadasUsuario(idOrigem, idDestino);
 	}
 
 	public List<Mensagem> getMensagensTrocadasGrupo(Long id, @Valid Usuario usuarioLogado) {
 		return mensagemRepository.getMensagensTrocadasGrupo(id);
 	}
 
-	public List<Mensagem> getMensagensRecebidas(@Valid Usuario usuarioLogado) {
-		return mensagemRepository.getMensagensRecebidas(usuarioLogado.getIdUsuario());
+	public List<Mensagem> getMensagensRecebidas(Long idOrigem) {
+		return mensagemRepository.getMensagensRecebidas(idOrigem);
 	}
 	
 }

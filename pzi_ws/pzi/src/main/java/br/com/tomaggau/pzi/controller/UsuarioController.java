@@ -22,19 +22,18 @@ import br.com.tomaggau.pzi.service.UsuarioService;
 
 @RestController
 @RequestMapping("/pzi")
+@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:8080"})
 public class UsuarioController {
 	
 	@Autowired
 	private UsuarioService usuarioService;
 	
 	@PostMapping("/usuarios")
-	@CrossOrigin(origins = {"http://localhost:8100", "http://localhost:8080"})
 	public ResponseEntity<Usuario> salvarUsuario(@Valid @RequestBody Usuario usuarioEntity) {
 		return ResponseEntity.ok().body(usuarioService.save(usuarioEntity));
 	}
 	
 	@GetMapping("/usuarios")
-	@CrossOrigin(origins = {"http://localhost:8100", "http://localhost:8080"})
 	public ResponseEntity<List<Usuario>> listarUsuarios() {
 		return ResponseEntity.ok().body(usuarioService.findAll());
 	}

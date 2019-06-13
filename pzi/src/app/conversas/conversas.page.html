@@ -8,133 +8,13 @@
 
 <ion-content>
   <ion-list lines="inset">
-    <ion-item href="conversa">
+    <ion-item *ngFor="let conversa of conversas">
       <ion-avatar slot="start">
         <img src="../../assets/avatar/batman.png">
       </ion-avatar>
       <ion-label>
-        <p class="titulo-conversa-grid">Batman</p>
-        <p class="ultima-mensagem">Última mensagem</p>
-      </ion-label>
-      <ion-note item-end>18:03</ion-note>
-    </ion-item>
-    <ion-item href="conversa">
-      <ion-avatar slot="start">
-        <img src="../../assets/avatar/bttf.png">
-      </ion-avatar>
-      <ion-label>
-        <p class="titulo-conversa-grid">Back to the Future</p>
-        <p class="ultima-mensagem">Última mensagem</p>
-      </ion-label>
-      <ion-note item-end>18:03</ion-note>
-    </ion-item>
-    <ion-item href="conversa">
-      <ion-avatar slot="start">
-        <img src="../../assets/avatar/han.png">
-      </ion-avatar>
-      <ion-label>
-        <p class="titulo-conversa-grid">Han Solo</p>
-        <p class="ultima-mensagem">Última mensagem</p>
-      </ion-label>
-      <ion-note item-end>18:03</ion-note>
-    </ion-item>
-    <ion-item href="conversa">
-      <ion-avatar slot="start">
-        <img src="../../assets/avatar/ian.png">
-      </ion-avatar>
-      <ion-label>
-        <p class="titulo-conversa-grid">Dr. Ian Malcolm</p>
-        <p class="ultima-mensagem">Última mensagem</p>
-      </ion-label>
-      <ion-note item-end>18:03</ion-note>
-    </ion-item>
-    <ion-item href="conversa">
-      <ion-avatar slot="start">
-        <img src="../../assets/avatar/ghostbusters.png">
-      </ion-avatar>
-      <ion-label>
-        <p class="titulo-conversa-grid">Ghostbusters</p>
-        <p class="ultima-mensagem">Última mensagem</p>
-      </ion-label>
-      <ion-note item-end>18:03</ion-note>
-    </ion-item>
-    <ion-item href="conversa">
-      <ion-avatar slot="start">
-        <img src="../../assets/avatar/yoda.png">
-      </ion-avatar>
-      <ion-label>
-        <p class="titulo-conversa-grid">Yoda</p>
-        <p class="ultima-mensagem">Última mensagem</p>
-      </ion-label>
-      <ion-note item-end>18:03</ion-note>
-    </ion-item>
-    <ion-item href="conversa">
-      <ion-avatar slot="start">
-        <img src="../../assets/avatar/marty.png">
-      </ion-avatar>
-      <ion-label>
-        <p class="titulo-conversa-grid">Marty McFly</p>
-        <p class="ultima-mensagem">Última mensagem</p>
-      </ion-label>
-      <ion-note item-end>18:03</ion-note>
-    </ion-item>
-    <ion-item href="conversa">
-      <ion-avatar slot="start">
-        <img src="../../assets/avatar/sarah.jpeg">
-      </ion-avatar>
-      <ion-label>
-        <p class="titulo-conversa-grid">Sarah Connor</p>
-        <p class="ultima-mensagem">Última mensagem</p>
-      </ion-label>
-      <ion-note item-end>18:03</ion-note>
-    </ion-item>
-    <ion-item href="conversa">
-      <ion-avatar slot="start">
-        <img src="../../assets/avatar/terminator.png">
-      </ion-avatar>
-      <ion-label>
-        <p class="titulo-conversa-grid">The Terminator</p>
-        <p class="ultima-mensagem">Última mensagem</p>
-      </ion-label>
-      <ion-note item-end>18:03</ion-note>
-    </ion-item>
-    <ion-item href="conversa">
-      <ion-avatar slot="start">
-        <img src="../../assets/avatar/rotla.png">
-      </ion-avatar>
-      <ion-label>
-        <p class="titulo-conversa-grid">Raiders of the Lost Ark</p>
-        <p class="ultima-mensagem">Última mensagem</p>
-      </ion-label>
-      <ion-note item-end>18:03</ion-note>
-    </ion-item>
-    <ion-item href="conversa">
-      <ion-avatar slot="start">
-        <img src="../../assets/avatar/luke.png">
-      </ion-avatar>
-      <ion-label>
-        <p class="titulo-conversa-grid">Luke Skywalker</p>
-        <p class="ultima-mensagem">Última mensagem</p>
-      </ion-label>
-      <ion-note item-end>18:03</ion-note>
-    </ion-item>
-    <ion-item href="conversa">
-      <ion-avatar slot="start">
-        <img src="../../assets/avatar/esb.png">
-      </ion-avatar>
-      <ion-label>
-        <p class="titulo-conversa-grid">The Empire Strikes Back</p>
-        <p class="ultima-mensagem">Última mensagem</p>
-      </ion-label>
-      <ion-note item-end>18:03</ion-note>
-    </ion-item>
-    <ion-item href="conversa">
-      <ion-avatar slot="start">
-        <img src="../../assets/avatar/leia.png">
-      </ion-avatar>
-      <ion-label>
-        <p class="titulo-conversa-grid">Leia Organa</p>
-        <p class="ultima-mensagem">Última mensagem</p>
+        <p class="titulo-conversa-grid">{{conversa.idUsuarioEnvio.nmUsuario}}</p>
+        <p class="ultima-mensagem">{{conversa.dsMensagem}}</p>
       </ion-label>
       <ion-note item-end>18:03</ion-note>
     </ion-item>

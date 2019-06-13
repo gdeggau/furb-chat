@@ -9,6 +9,6 @@ export class ConversaService {
     }
 
     getConversa(): Observable<any> {
-        return this.http.get(AppConfigs.API_ENDPOINT + '/mensagens/usuario/1');
+        return this.http.get(AppConfigs.API_ENDPOINT + '/mensagens/usuario/1/3');
     }
 }

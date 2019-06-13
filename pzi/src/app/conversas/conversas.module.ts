@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ConversasPage } from './conversas.page';
+import { ConversasService } from 'src/providers/conversas-service';
 
 @NgModule({
   imports: [
@@ -11,6 +12,9 @@ import { ConversasPage } from './conversas.page';
     CommonModule,
     FormsModule,
     RouterModule.forChild([{ path: '', component: ConversasPage }])
+  ],
+  providers: [
+    ConversasService
   ],
   declarations: [ConversasPage]
 })

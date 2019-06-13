@@ -21,7 +21,7 @@ import br.com.tomaggau.pzi.service.MensagemService;
 
 @RestController
 @RequestMapping("/pzi")
-@CrossOrigin(origins = {"http://localhost:8100", "http://localhost:8080"})
+@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:8080"})
 public class MensagemController {
 	
 	@Autowired
@@ -46,9 +46,9 @@ public class MensagemController {
 	
 	//id de quem eu quero ver as mensagens
 	/* VALORES FIXADOS APENAS PARA TESTES */
-	@GetMapping("/mensagens/usuario/{id}")
-	public ResponseEntity<List<Mensagem>> getMensagensTrocadasUsuario(@PathVariable Long id/*, @Valid @RequestBody Usuario usuarioLogado*/) {
-		return ResponseEntity.ok().body(mensagemService.getMensagensTrocadasUsuario(id, null/*usuarioLogado*/));
+	@GetMapping("/mensagens/usuario/{idOrigem}/{idDestino}")
+	public ResponseEntity<List<Mensagem>> getMensagensTrocadasUsuario(@PathVariable(value="idOrigem") Long idOrigem, @PathVariable(value="idDestino") Long idDestino) {
+		return ResponseEntity.ok().body(mensagemService.getMensagensTrocadasUsuario(idOrigem, idDestino));
 	}
 	
 	//id do grupo que quero ver as mensagens
@@ -58,9 +58,9 @@ public class MensagemController {
 	}
 	
 	//minhas mensagens
-	@GetMapping("/mensagens")
-	public ResponseEntity<List<Mensagem>> getMensagensRecebidas(@Valid @RequestBody Usuario usuarioLogado){
-		return ResponseEntity.ok().body(mensagemService.getMensagensRecebidas(usuarioLogado));
+	@GetMapping("/mensagens/{idOrigem}")
+	public ResponseEntity<List<Mensagem>> getMensagensRecebidas(@PathVariable(value="idOrigem") Long idOrigem){
+		return ResponseEntity.ok().body(mensagemService.getMensagensRecebidas(idOrigem));
 	}
 
 }
