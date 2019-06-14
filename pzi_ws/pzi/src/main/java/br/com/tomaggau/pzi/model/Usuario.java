@@ -18,6 +18,7 @@ public class Usuario {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long idUsuario;
 	
+	//nao nao vai ser mais usado
 	@Column(name="nm_usuario")
 	private String nmUsuario;
 	

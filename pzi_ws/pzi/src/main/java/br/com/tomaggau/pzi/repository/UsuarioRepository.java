@@ -9,5 +9,7 @@ import br.com.tomaggau.pzi.model.Usuario;
 public interface UsuarioRepository extends JpaRepository<Usuario, Long>{
 	
 	Usuario findByNmUsuario(String usuario);
+	
+	Usuario findByNrTelefone(String nrTelefone);
 
 }
