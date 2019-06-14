@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { ConversaPage } from './conversa.page';
 import { ConversaService } from 'src/providers/conversa-service';
+import { UtilsService } from '../commons/utils.service';
 
 const routes: Routes = [
   {
@@ -24,7 +25,8 @@ const routes: Routes = [
     ReactiveFormsModule
   ],
   providers: [
-    ConversaService
+    ConversaService,
+    UtilsService
   ],
   declarations: [ConversaPage]
 })

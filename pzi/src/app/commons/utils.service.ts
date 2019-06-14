@@ -18,4 +18,8 @@ export class UtilsService {
     return headers;
   }
 
+  getIdUsuarioLogado(): number {
+    return 1;
+  }
+
 }

@@ -3,8 +3,8 @@
     <ion-title>
       <a href="tabs"><ion-icon name="arrow-back"></ion-icon></a>
       <img src="../../assets/avatar/luke.png">
-      <ion-label>
-        <!--p-->Gabriel Deggau<!--/p-->
+      <ion-label *ngIf="usuario != undefined">
+        <!--p-->{{usuario.nmExibicao}}<!--/p-->
         <!--p>Ocupado</p-->
       </ion-label>
     </ion-title>
@@ -17,7 +17,7 @@
       <td *ngIf="mensagem.idUsuarioEnvio.idUsuario == 1">
         <p class="msg minha-msg">{{mensagem.dsMensagem}}</p>
       </td>
-      <td *ngIf="mensagem.idUsuarioEnvio.idUsuario == 3">
+      <td *ngIf="mensagem.idUsuarioEnvio.idUsuario == usuario.idUsuario">
         <p class="msg">{{mensagem.dsMensagem}}</p>
       </td>
     </tr>

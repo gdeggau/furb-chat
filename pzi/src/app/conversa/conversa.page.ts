@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ConversaService } from 'src/providers/conversa-service';
 import { FormBuilder, FormControl, Validators, FormGroup } from '@angular/forms';
+import { UtilsService } from '../commons/utils.service';
+import { utils } from 'protractor';
 
 @Component({
   selector: 'app-conversa',
@@ -8,17 +10,22 @@ import { FormBuilder, FormControl, Validators, FormGroup } from '@angular/forms'
   styleUrls: ['./conversa.page.scss'],
 })
 export class ConversaPage {
+  private usuario: any;
   private mensagens: Array<any>;
   private formMensagem: FormGroup;
 
   constructor(public formBuilder: FormBuilder,
-              public conversaService: ConversaService) {
+              public conversaService: ConversaService,
+              public utils: UtilsService) {
   }
 
   ionViewDidEnter() {
-    this.conversaService.getConversa().subscribe(mensagens => {
+    this.conversaService.getUsuarioConversa(3).subscribe(usuario => {
+      this.usuario = usuario;
+    });
+    this.conversaService.getConversa(3).subscribe(mensagens => {
       this.mensagens = mensagens;
-    })
+    });
   }
 
   ngOnInit() {
@@ -30,9 +37,9 @@ export class ConversaPage {
   enviarMensagemTexto() {
     let mensagem = this.formMensagem.value;
     mensagem.idUsuarioEnvio = {
-      idUsuario: 1
+      idUsuario: this.utils.getIdUsuarioLogado()
     };
-    this.conversaService.postMensagemTexto(mensagem);
+    this.conversaService.postMensagemTexto(mensagem, 3);
   }
 
 }
