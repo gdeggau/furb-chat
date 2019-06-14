@@ -44,4 +44,8 @@ public class UsuarioService {
 		return usuarioRepository.findByNmUsuario(nome);
 	}
 	
+	public Usuario findByNrTelefone(String telefone) {
+		return usuarioRepository.findByNrTelefone(telefone);
+	}
+	
 }

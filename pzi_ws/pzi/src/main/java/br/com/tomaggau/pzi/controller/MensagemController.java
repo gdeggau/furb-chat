@@ -45,7 +45,6 @@ public class MensagemController {
 	//}
 	
 	//id de quem eu quero ver as mensagens
-	/* VALORES FIXADOS APENAS PARA TESTES */
 	@GetMapping("/mensagens/usuario/{idOrigem}/{idDestino}")
 	public ResponseEntity<List<Mensagem>> getMensagensTrocadasUsuario(@PathVariable(value="idOrigem") Long idOrigem, @PathVariable(value="idDestino") Long idDestino) {
 		return ResponseEntity.ok().body(mensagemService.getMensagensTrocadasUsuario(idOrigem, idDestino));
