@@ -5,10 +5,10 @@
 </ion-header>
 
 <ion-content>
-  <form>
-    <input type="text" placeholder="Usuário">
-    <input type="password" placeholder="Senha">
-    <input type="submit" value="Enviar">
+  <form [formGroup]="formLogin" (ngSubmit)="logar()">
+    <input type="text" formControlName="nrTelefone" placeholder="Telefone">
+    <input type="password" formControlName="dsSenha" placeholder="Senha">
+    <input type="submit" value="Entrar">
   </form>
   <a href="cadastro"><p>Não possuo cadastro</p></a>
   <p>Esqueci minha senha</p>

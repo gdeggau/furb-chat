@@ -49,6 +49,17 @@ public class UsuarioController {
 		return ResponseEntity.ok().body(usuario);
 	}
 	
+	@GetMapping("usuarios/{telefone}/{senha}")
+	public ResponseEntity<Usuario> buscarUsuarioLogin(@PathVariable(value="telefone") String telefone, @PathVariable(value="senha") String senha) {
+		
+		Usuario usuario = usuarioService.findByPhoneAndPassword(telefone, senha);
+		
+		if(usuario == null)
+			return ResponseEntity.notFound().build();
+		
+		return ResponseEntity.ok().body(usuario);
+	}
+	
 	@PutMapping("/usuarios/{id}")
 	public ResponseEntity<Usuario> atualizarUsuario(@PathVariable Long id, @Valid @RequestBody Usuario usuarioDetalhes) throws Exception {
 		System.out.println("entrou no update");

@@ -12,7 +12,7 @@
 </ion-header>
 
 <ion-content>
-  <table>
+  <table *ngIf="mensagens != undefined">
     <tr *ngFor="let mensagem of mensagens">
       <td *ngIf="mensagem.idUsuarioEnvio.idUsuario == 1">
         <p class="msg minha-msg">{{mensagem.dsMensagem}}</p>

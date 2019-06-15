@@ -4,6 +4,8 @@ import { HttpHeaders } from '@angular/common/http';
 @Injectable()
 export class UtilsService {
 
+  private usuarioLogado: any;
+
   constructor() {}
 
   formatarDataServico(data: String) {
@@ -18,8 +20,19 @@ export class UtilsService {
     return headers;
   }
 
-  getIdUsuarioLogado(): number {
-    return 1;
+  setUsuarioLogado(usuario: any) {
+    this.usuarioLogado = usuario;
+  }
+
+  getUsuarioLogado(): any {
+    //return this.usuarioLogado;
+    return {
+      idUsuario: 1
+    }
+  }
+
+  isUsuarioLogado(): boolean {
+    return this.usuarioLogado != null;
   }
 
 }

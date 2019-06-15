@@ -28,18 +28,21 @@ export class ConversaPage {
     });
   }
 
-  ngOnInit() {
+  iniciarForm() {
     this.formMensagem = this.formBuilder.group({
       'dsMensagem': new FormControl('', Validators.required)
     });
   }
 
+  ngOnInit() {
+    this.iniciarForm();
+  }
+
   enviarMensagemTexto() {
     let mensagem = this.formMensagem.value;
-    mensagem.idUsuarioEnvio = {
-      idUsuario: this.utils.getIdUsuarioLogado()
-    };
+    mensagem.idUsuarioEnvio = this.utils.getUsuarioLogado();
     this.conversaService.postMensagemTexto(mensagem, 3);
+    this.iniciarForm();
   }
 
 }

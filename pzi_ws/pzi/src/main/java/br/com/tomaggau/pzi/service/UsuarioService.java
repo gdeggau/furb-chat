@@ -34,6 +34,10 @@ public class UsuarioService {
 		return usuarioRepository.findById(usuarioId).orElse(null);
 	}
 	
+	public Usuario findByPhoneAndPassword(String phone, String password) {
+		return usuarioRepository.findByNrTelefoneAndDsSenha(phone, password);
+	}
+	
 	//Deletar usuario
 	public void delete(Usuario usuario) {
 		usuario.setFlAtivo('I');

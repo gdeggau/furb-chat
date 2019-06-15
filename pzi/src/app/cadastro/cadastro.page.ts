@@ -24,14 +24,21 @@ export class CadastroPage implements OnInit {
       'nrTelefone': new FormControl('', Validators.required),
       'dsEmail': new FormControl('', Validators.required),
       'dsSenha': new FormControl('', Validators.required),
+      'dsSenhaConf': new FormControl('', Validators.required),
       'dsFrasePerfil': new FormControl('', Validators.required)
     });
   }
 
   cadastrar() {
     let usuario = this.formUsuario.value;
-    usuario.dtNascimento = null;//this.utils.formatarDataServico(usuario.dtNascimento);
-    this.cadastroService.postUsuario(usuario);
+    if (usuario.dsSenha == usuario.dsSenhaConf) {
+      let md5 = require('md5');
+      usuario.dsSenha = md5(usuario.dsSenha);
+      usuario.dtNascimento = null;//this.utils.formatarDataServico(usuario.dtNascimento);
+      this.cadastroService.postUsuario(usuario);
+    } else {
+      alert('As senhas devem ser iguais.');
+    }
   }
 
 }

@@ -5,8 +5,7 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class ConversasService{
-    constructor(public http: HttpClient){
-
+    constructor(public http: HttpClient) {
     }
 
     getConversas(): Observable<any> {
