@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.tomaggau.pzi.enums.Destino;
 import br.com.tomaggau.pzi.model.Mensagem;
-import br.com.tomaggau.pzi.model.Usuario;
 import br.com.tomaggau.pzi.service.MensagemService;
 
 @RestController
@@ -24,25 +23,24 @@ import br.com.tomaggau.pzi.service.MensagemService;
 @CrossOrigin(origins = {"http://localhost:8100", "http://localhost:8080"})
 public class MensagemController {
 	
+	/*
+	 * 	métodos POST o usuário logado vai no CORPO da requisição
+	 *  métodos GET o usuário logado vai como PARAMETRO da requisição
+	 * */
+	
 	@Autowired
 	private MensagemService mensagemService;
 	
 	//id para quem eu tou enviando a mensagem
-	@PostMapping("/mensagens/usuario/{id}")
-	public ResponseEntity<Mensagem> enviarMensagemUsuario(@PathVariable Long id, @Valid @RequestBody Mensagem mensagem) {
-		return ResponseEntity.ok().body(mensagemService.save(id, mensagem, Destino.USUARIO));
+	@PostMapping("/mensagens/usuario/{idDestino}")
+	public ResponseEntity<Mensagem> enviarMensagemUsuario(@PathVariable Long idDestino, @Valid @RequestBody Mensagem mensagem) {
+		return ResponseEntity.ok().body(mensagemService.save(idDestino, mensagem, Destino.USUARIO));
 	}
 	
-	@PostMapping("/mensagens/grupo/{id}")
-	public ResponseEntity<Mensagem> enviarMensagemGrupo(@PathVariable Long id, @Valid @RequestBody Mensagem mensagem){
-		return ResponseEntity.ok().body(mensagemService.save(id, mensagem, Destino.GRUPO));
+	@PostMapping("/mensagens/grupo/{idDestino}")
+	public ResponseEntity<Mensagem> enviarMensagemGrupo(@PathVariable Long idDestino, @Valid @RequestBody Mensagem mensagem){
+		return ResponseEntity.ok().body(mensagemService.save(idDestino, mensagem, Destino.GRUPO));
 	}
-	
-	//id de quem eu quero ver as mensagens
-	//@GetMapping("/mensagens/usuario/{id}")
-	//public ResponseEntity<List<Mensagem>> getMensagensRecebidasUsuario(@PathVariable Long id, @Valid @RequestBody Usuario usuarioLogado) {
-		//return ResponseEntity.ok().body(mensagemService.getMensagensUsuario(id, usuarioLogado));
-	//}
 	
 	//id de quem eu quero ver as mensagens
 	@GetMapping("/mensagens/usuario/{idOrigem}/{idDestino}")
@@ -51,9 +49,9 @@ public class MensagemController {
 	}
 	
 	//id do grupo que quero ver as mensagens
-	@GetMapping("/mensagens/grupo/{id}")
-	public ResponseEntity<List<Mensagem>> getMensagensTrocadasGrupo(@PathVariable Long id, @Valid @RequestBody Usuario usuarioLogado){
-		return ResponseEntity.ok().body(mensagemService.getMensagensTrocadasGrupo(id, usuarioLogado));
+	@GetMapping("/mensagens/grupo/{idOrigem}")
+	public ResponseEntity<List<Mensagem>> getMensagensTrocadasGrupo(@PathVariable Long idOrigem){
+		return ResponseEntity.ok().body(mensagemService.getMensagensTrocadasGrupo(idOrigem));
 	}
 	
 	//minhas mensagens

@@ -15,15 +15,6 @@ public interface MensagemRepository extends JpaRepository<Mensagem, Long>{
 	
 	@Query(value = "SELECT *"
 				+ " FROM mensagens mens" 
-				+ " INNER JOIN mensagem_destinatario mens_des"
-				+ " ON mens.id_mensagem = mens_des.id_mensagem"
-				+ " WHERE mens.id_usuario_envio = ? "
-				+ " AND mens_des.id_usuario_destino = ?", nativeQuery = true)
-	List<Mensagem> getMensagensUsuario(Long idEnvio, Long idDestino);
-	
-	//ta funcionando ainda, tem que ver as paradas do parametros
-	@Query(value = "SELECT *"
-				+ " FROM mensagens mens" 
 				+ " INNER JOIN mensagens_destinatario mens_des" 
 				+ " ON mens.id_mensagem = mens_des.id_mensagem" 
 				+ " WHERE (mens.id_usuario_envio = :idUser1 AND mens_des.id_usuario_destino = :idUser2)" 

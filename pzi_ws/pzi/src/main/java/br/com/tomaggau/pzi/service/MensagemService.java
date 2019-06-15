@@ -68,16 +68,12 @@ public class MensagemService {
 		}
 		
 	}
-
-	public List<Mensagem> getMensagensUsuario(Long id, Usuario usuario) {
-		return mensagemRepository.getMensagensUsuario(id, usuario.getIdUsuario());
-	}
 	
 	public List<Mensagem> getMensagensTrocadasUsuario(Long idOrigem, Long idDestino) {
 		return mensagemRepository.getMensagensTrocadasUsuario(idOrigem, idDestino);
 	}
 
-	public List<Mensagem> getMensagensTrocadasGrupo(Long id, @Valid Usuario usuarioLogado) {
+	public List<Mensagem> getMensagensTrocadasGrupo(Long id) {
 		return mensagemRepository.getMensagensTrocadasGrupo(id);
 	}
 

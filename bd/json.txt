@@ -99,6 +99,26 @@ localhost:8080/pzi/grupos/usuarios/2
 	}
 }
 
+//adicionar contato
+localhost:8080/pzi/contatos/5547996542356
+{
+	"idUsuario": 1,
+	"nmUsuario": "Gabriel",
+	"nmExibicao": "Gabriel Deggau Schmidt",
+	"dtNascimento": "1998-04-23T00:00:00",
+	"nrTelefone": "47999988052",
+	"dsEmail": "gabrieldeggau@hotmail.com",
+	"dsSenha": "12345",
+	"dtCadastro": "2019-05-13T14:47:44",
+	"dsCaminhoFoto": "",
+	"dsFrasePerfil": "",
+	"flStatus": "D",
+	"flAtivo": "A",
+	"dtInativacao": null
+}
+
+//meus contatos
+localhost:8080/pzi/contatos/1
 
 
 

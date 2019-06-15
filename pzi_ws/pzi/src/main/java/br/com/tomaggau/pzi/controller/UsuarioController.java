@@ -29,7 +29,7 @@ public class UsuarioController {
 	private UsuarioService usuarioService;
 	
 	@PostMapping("/usuarios")
-	public ResponseEntity<Usuario> salvarUsuario(@Valid @RequestBody Usuario usuarioEntity) {
+	public ResponseEntity<Usuario> salvarUsuario(@Valid @RequestBody Usuario usuarioEntity) throws Exception {
 		return ResponseEntity.ok().body(usuarioService.save(usuarioEntity));
 	}
 	
@@ -50,7 +50,7 @@ public class UsuarioController {
 	}
 	
 	@PutMapping("/usuarios/{id}")
-	public ResponseEntity<Usuario> atualizarUsuario(@PathVariable Long id, @Valid @RequestBody Usuario usuarioDetalhes) {
+	public ResponseEntity<Usuario> atualizarUsuario(@PathVariable Long id, @Valid @RequestBody Usuario usuarioDetalhes) throws Exception {
 		System.out.println("entrou no update");
 		Usuario usuario = usuarioService.findById(id);
 		if(usuario == null)
