@@ -8,7 +8,7 @@ export class ConversasService{
     constructor(public http: HttpClient) {
     }
 
-    getConversas(): Observable<any> {
-        return this.http.get(AppConfigs.API_ENDPOINT + '/mensagens/3');
+    getConversas(id: number): Observable<any> {
+        return this.http.get(AppConfigs.API_ENDPOINT + '/mensagens/' + id);
     }
 }

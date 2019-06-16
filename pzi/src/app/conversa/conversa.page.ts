@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ConversaService } from 'src/providers/conversa-service';
 import { FormBuilder, FormControl, Validators, FormGroup } from '@angular/forms';
 import { UtilsService } from '../commons/utils.service';
-import { utils } from 'protractor';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-conversa',
@@ -14,16 +14,20 @@ export class ConversaPage {
   private mensagens: Array<any>;
   private formMensagem: FormGroup;
 
+  private id = this.activatedRoute.snapshot.params['id'];
+
   constructor(public formBuilder: FormBuilder,
               public conversaService: ConversaService,
-              public utils: UtilsService) {
+              public utils: UtilsService,
+              public router: Router,
+              public activatedRoute: ActivatedRoute) {
   }
 
   ionViewDidEnter() {
-    this.conversaService.getUsuarioConversa(3).subscribe(usuario => {
+    this.conversaService.getUsuarioConversa(this.id).subscribe(usuario => {
       this.usuario = usuario;
     });
-    this.conversaService.getConversa(3).subscribe(mensagens => {
+    this.conversaService.getConversa(this.id).subscribe(mensagens => {
       this.mensagens = mensagens;
     });
   }
@@ -36,12 +40,13 @@ export class ConversaPage {
 
   ngOnInit() {
     this.iniciarForm();
+    this.utils.verificarUsuarioLogado();
   }
 
   enviarMensagemTexto() {
     let mensagem = this.formMensagem.value;
     mensagem.idUsuarioEnvio = this.utils.getUsuarioLogado();
-    this.conversaService.postMensagemTexto(mensagem, 3);
+    this.conversaService.postMensagemTexto(mensagem, this.id);
     this.iniciarForm();
   }
 

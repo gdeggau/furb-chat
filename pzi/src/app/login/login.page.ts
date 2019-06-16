@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { LoginService } from 'src/providers/login-service';
 import { UtilsService } from '../commons/utils.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,8 @@ export class LoginPage implements OnInit {
   
   constructor(public formBuilder: FormBuilder,
               public loginService: LoginService,
-              public utils: UtilsService) { }
+              public utils: UtilsService,
+              public router: Router) { }
 
   iniciarForm(nrTelefone: string) {
     this.formLogin = this.formBuilder.group({
@@ -33,7 +35,7 @@ export class LoginPage implements OnInit {
     usuario.dsSenha = md5(usuario.dsSenha);
     this.loginService.getUsuarioLogin(usuario).subscribe(usu => {
       this.utils.setUsuarioLogado(usu);
-      alert(usu.nmExibicao + ' logado');
+      this.router.navigate(['/tabs/conversas']);
     }, error => {
       this.iniciarForm(usuario.nrTelefone);
       alert('Telefone e/ou senha incorreta');

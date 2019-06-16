@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ContatosService } from 'src/providers/contatos-service';
+import { UtilsService } from '../commons/utils.service';
 
 @Component({
   selector: 'app-contatos',
@@ -9,10 +10,12 @@ import { ContatosService } from 'src/providers/contatos-service';
 export class ContatosPage {
   private contatos: Array<any>;
 
-  constructor(public contatosService: ContatosService) {
+  constructor(public contatosService: ContatosService,
+              public utils: UtilsService) {
   }
 
   ionViewDidEnter() {
+    this.utils.verificarUsuarioLogado();
     this.contatosService.getContatos().subscribe(contatos => {
       this.contatos = contatos;
     })

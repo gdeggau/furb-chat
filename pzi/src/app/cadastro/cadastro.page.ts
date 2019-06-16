@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CadastroService } from 'src/providers/cadastro-service';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { UtilsService } from '../commons/utils.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cadastro',
@@ -14,7 +15,8 @@ export class CadastroPage implements OnInit {
   
   constructor(public formBuilder: FormBuilder,
               public cadastroService: CadastroService,
-              public utils: UtilsService) { }
+              public utils: UtilsService,
+              public router: Router) { }
 
   ngOnInit() {
     this.formUsuario = this.formBuilder.group({
@@ -36,6 +38,7 @@ export class CadastroPage implements OnInit {
       usuario.dsSenha = md5(usuario.dsSenha);
       usuario.dtNascimento = null;//this.utils.formatarDataServico(usuario.dtNascimento);
       this.cadastroService.postUsuario(usuario);
+      this.router.navigate(['/login']);
     } else {
       alert('As senhas devem ser iguais.');
     }

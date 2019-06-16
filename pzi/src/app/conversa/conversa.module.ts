@@ -11,7 +11,7 @@ import { UtilsService } from '../commons/utils.service';
 
 const routes: Routes = [
   {
-    path: '',
+    path: ':id',
     component: ConversaPage
   }
 ];

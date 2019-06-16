@@ -8,7 +8,7 @@
 
 <ion-content>
   <ion-list lines="inset">
-    <ion-item href="conversa" *ngFor="let conversa of conversas">
+    <ion-item (click)="abrirConversa(conversa)" *ngFor="let conversa of conversas">
       <ion-avatar slot="start">
         <img src="../../assets/avatar/batman.png">
       </ion-avatar>

@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class UtilsService {
 
-  private usuarioLogado: any;
-
-  constructor() {}
+  constructor(public router: Router) {}
 
   formatarDataServico(data: String) {
     const datas = data.split('/');
@@ -21,18 +20,17 @@ export class UtilsService {
   }
 
   setUsuarioLogado(usuario: any) {
-    this.usuarioLogado = usuario;
+    localStorage.setItem('usuarioLogado', JSON.stringify(usuario));
   }
 
   getUsuarioLogado(): any {
-    //return this.usuarioLogado;
-    return {
-      idUsuario: 1
-    }
+    return JSON.parse(localStorage.getItem('usuarioLogado'));
   }
 
-  isUsuarioLogado(): boolean {
-    return this.usuarioLogado != null;
+  verificarUsuarioLogado() {
+    if (!this.getUsuarioLogado()) {
+      this.router.navigate(['/login']);
+    }
   }
 
 }
