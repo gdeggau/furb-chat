@@ -16,7 +16,7 @@
         <p class="titulo-conversa-grid">{{conversa.idUsuarioEnvio.nmExibicao}}</p>
         <p class="ultima-mensagem">{{conversa.dsMensagem}}</p>
       </ion-label>
-      <ion-note item-end>18:03</ion-note>
+      <ion-note item-end>{{formatarData(conversa.dtEnvio)}}</ion-note>
     </ion-item>
   </ion-list>
 </ion-content>

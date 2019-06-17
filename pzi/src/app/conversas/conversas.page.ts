@@ -23,6 +23,11 @@ export class ConversasPage {
     });
   }
 
+  formatarData(data: string): string {
+    let moment = require('moment');
+    return moment(data).format('LT');
+  }
+
   abrirConversa(conversa: any) {
     this.router.navigate(['conversa/'+conversa.idUsuarioEnvio.idUsuario]);
   }

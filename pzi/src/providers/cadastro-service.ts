@@ -1,19 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AppConfigs } from 'src/app/commons/app-configs';
-import { UtilsService } from 'src/app/commons/utils.service';
 
 @Injectable()
 export class CadastroService {
-    constructor(public http : HttpClient,
-                public utils: UtilsService) {
+    constructor(public http : HttpClient) {
     }
 
     postUsuario(usuario: any) {
-        /*const httpOptions = {
-            headers: this.utils.getDefaultHeaders()
-        };
-        let usu = JSON.stringify(usuario);*/
         let body = {
             nmUsuario: usuario.nmUsuario,
             nmExibicao: usuario.nmExibicao,
@@ -26,7 +20,6 @@ export class CadastroService {
             flStatus: 'D'
         }
         this.http.post(AppConfigs.API_ENDPOINT + '/usuarios', body).
-        //this.http.post(AppConfigs.API_ENDPOINT + '/usuarios', usu, httpOptions).
         subscribe(res => {
             console.log(res);
         }, error => {

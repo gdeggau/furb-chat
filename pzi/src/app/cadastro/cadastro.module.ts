@@ -7,7 +7,6 @@ import { IonicModule } from '@ionic/angular';
 
 import { CadastroPage } from './cadastro.page';
 import { CadastroService } from 'src/providers/cadastro-service';
-import { UtilsService } from '../commons/utils.service';
 
 const routes: Routes = [
   {
@@ -26,8 +25,7 @@ const routes: Routes = [
   ],
   providers: [
     CadastroService,
-    FormBuilder,
-    UtilsService
+    FormBuilder
   ],
   declarations: [CadastroPage]
 })

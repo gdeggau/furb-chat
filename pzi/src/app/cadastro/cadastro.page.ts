@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CadastroService } from 'src/providers/cadastro-service';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-import { UtilsService } from '../commons/utils.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -15,7 +14,6 @@ export class CadastroPage implements OnInit {
   
   constructor(public formBuilder: FormBuilder,
               public cadastroService: CadastroService,
-              public utils: UtilsService,
               public router: Router) { }
 
   ngOnInit() {
@@ -36,7 +34,8 @@ export class CadastroPage implements OnInit {
     if (usuario.dsSenha == usuario.dsSenhaConf) {
       let md5 = require('md5');
       usuario.dsSenha = md5(usuario.dsSenha);
-      usuario.dtNascimento = null;//this.utils.formatarDataServico(usuario.dtNascimento);
+      let moment = require('moment');
+      usuario.dtNascimento = moment(usuario.dtNascimento);
       this.cadastroService.postUsuario(usuario);
       this.router.navigate(['/login']);
     } else {
