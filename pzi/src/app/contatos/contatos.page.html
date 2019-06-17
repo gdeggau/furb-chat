@@ -8,7 +8,13 @@
 
 <ion-content>
   <ion-list lines="none">
-    <ion-item *ngFor="let contato of contatos">
+    <ion-item (click)="adicionarContato()">
+      <ion-avatar slot="start">
+        <img src="../../assets/avatar/esb.png">
+      </ion-avatar>
+      <ion-label>Adicionar novo contato</ion-label>
+    </ion-item>
+    <ion-item (click)="iniciarConversa(contato)" *ngFor="let contato of contatos">
       <ion-avatar slot="start">
         <img src="../../assets/avatar/batman.png">
       </ion-avatar>

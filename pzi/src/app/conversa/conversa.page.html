@@ -14,7 +14,7 @@
 <ion-content>
   <table *ngIf="mensagens != undefined">
     <tr *ngFor="let mensagem of mensagens">
-      <td *ngIf="mensagem.idUsuarioEnvio.idUsuario == 1">
+      <td *ngIf="mensagem.idUsuarioEnvio.idUsuario != usuario.idUsuario">
         <p class="msg minha-msg">{{mensagem.dsMensagem}}</p>
       </td>
       <td *ngIf="mensagem.idUsuarioEnvio.idUsuario == usuario.idUsuario">

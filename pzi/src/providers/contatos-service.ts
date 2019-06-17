@@ -8,7 +8,16 @@ export class ContatosService {
     constructor(public http : HttpClient) {
     }
 
-    getContatos(): Observable<any> {
-        return this.http.get(AppConfigs.API_ENDPOINT + '/usuarios');
+    getContatos(id: number): Observable<any> {
+        return this.http.get(AppConfigs.API_ENDPOINT + '/contatos/' + id);
+    }
+
+    postContato(telefone: string, usuario: any) {
+        this.http.post(AppConfigs.API_ENDPOINT + '/contatos/' + telefone, usuario).
+        subscribe(contato => {
+            console.log(contato);
+        }, error => {
+            console.log(error);
+        });
     }
 }
