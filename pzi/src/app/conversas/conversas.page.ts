@@ -3,6 +3,8 @@ import { ConversasService } from 'src/providers/conversas-service';
 import { UtilsService } from '../commons/utils.service';
 import { Router } from '@angular/router';
 
+declare const require: any;
+
 @Component({
   selector: 'app-conversas',
   templateUrl: 'conversas.page.html',

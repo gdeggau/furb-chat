@@ -4,6 +4,8 @@ import { LoginService } from 'src/providers/login-service';
 import { UtilsService } from '../commons/utils.service';
 import { Router } from '@angular/router';
 
+declare const require: any;
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',

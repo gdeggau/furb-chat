@@ -3,6 +3,8 @@ import { CadastroService } from 'src/providers/cadastro-service';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
+declare const require: any;
+
 @Component({
   selector: 'app-cadastro',
   templateUrl: './cadastro.page.html',
