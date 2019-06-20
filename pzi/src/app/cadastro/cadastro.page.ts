@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CadastroService } from 'src/providers/cadastro-service';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 
 declare const require: any;
 
@@ -16,7 +17,8 @@ export class CadastroPage implements OnInit {
   
   constructor(public formBuilder: FormBuilder,
               public cadastroService: CadastroService,
-              public router: Router) { }
+              public router: Router,
+              public alert: AlertController) { }
 
   ngOnInit() {
     this.formUsuario = this.formBuilder.group({
@@ -31,6 +33,14 @@ export class CadastroPage implements OnInit {
     });
   }
 
+  async presentAlert() {
+    const alert = await this.alert.create({
+      message: 'As senhas devem ser iguais.',
+      buttons: ['OK']
+    });
+    await alert.present();
+  }
+
   cadastrar() {
     let usuario = this.formUsuario.value;
     if (usuario.dsSenha == usuario.dsSenhaConf) {
@@ -41,7 +51,7 @@ export class CadastroPage implements OnInit {
       this.cadastroService.postUsuario(usuario);
       this.router.navigate(['/login']);
     } else {
-      alert('As senhas devem ser iguais.');
+      this.presentAlert();
     }
   }
 
