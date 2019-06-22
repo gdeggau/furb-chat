@@ -11,7 +11,7 @@ export class ConversaService {
     }
 
     getConversa(idUsuarioDestino: number): Observable<any> {
-        return this.http.get(AppConfigs.API_ENDPOINT + '/mensagens/usuario/' + this.utils.getUsuarioLogado().idUsuario + '/' + idUsuarioDestino);
+        return this.http.get(AppConfigs.API_ENDPOINT + '/mensagens/usuario/' + idUsuarioDestino);
     }
 
     postMensagemTexto(mensagem: any, idUsuarioDestino: number) {

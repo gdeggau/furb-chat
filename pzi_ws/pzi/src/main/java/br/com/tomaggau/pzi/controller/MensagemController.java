@@ -43,9 +43,9 @@ public class MensagemController {
 	}
 	
 	//id de quem eu quero ver as mensagens
-	@GetMapping("/mensagens/usuario/{idOrigem}/{idDestino}")
-	public ResponseEntity<List<Mensagem>> getMensagensTrocadasUsuario(@PathVariable(value="idOrigem") Long idOrigem, @PathVariable(value="idDestino") Long idDestino) {
-		return ResponseEntity.ok().body(mensagemService.getMensagensTrocadasUsuario(idOrigem, idDestino));
+	@GetMapping("/mensagens/usuario/{idMensagem}")
+	public ResponseEntity<List<Mensagem>> getMensagensTrocadasUsuario(@PathVariable(value="idMensagem") Long idMensagem) {
+		return ResponseEntity.ok().body(mensagemService.getMensagensTrocadasBaseadaNoIdMensagem(idMensagem));
 	}
 	
 	//id do grupo que quero ver as mensagens

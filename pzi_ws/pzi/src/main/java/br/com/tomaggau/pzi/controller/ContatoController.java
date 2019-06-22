@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -45,6 +46,12 @@ public class ContatoController {
 	public ResponseEntity<List<Usuario>> getMeusContatos(@PathVariable(value="idOrigem") Long idOrigem){
 		return ResponseEntity.ok().body(contatoService.getMeusContato(idOrigem));
 	}
+	
+	@DeleteMapping("/contatos/{idOrigem}/{idDestino}")
+	public void deletarContato(@PathVariable(value="idOrigem") Long idOrigem, @PathVariable(value="idDestino") Long idDestino){
+		contatoService.deletarContato(idOrigem, idDestino);
+	}
+	
 	
 	
 }

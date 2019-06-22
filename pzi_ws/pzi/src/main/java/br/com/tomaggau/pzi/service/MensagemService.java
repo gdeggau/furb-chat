@@ -1,10 +1,14 @@
 package br.com.tomaggau.pzi.service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,14 +40,18 @@ public class MensagemService {
 	
 	public Mensagem save(Long id, Mensagem mensagem, Destino destino) {
 		
+		mensagem.setIdUsuarioEnvio(usuarioService.findById(mensagem.getIdUsuarioEnvio().getIdUsuario()));
 		mensagem.setDtEnvio(LocalDateTime.now());
 		mensagem.setFlTipoMensagem('T');
-		Mensagem mensagemSalva = mensagemRepository.save(mensagem);
+		mensagem.setFlDestino(destino.getDescricao());
+		Mensagem mensagemSalva;
 		
 		MensagemDestinatario destinatario;
 		
 		//mensagem para um usuário
 		if(destino.equals(Destino.USUARIO)) {
+			mensagem.setDsTituloConversa(usuarioService.findById(id).getNmExibicao());
+			mensagemSalva = mensagemRepository.save(mensagem);
 			destinatario = new MensagemDestinatario();
 			destinatario.setIdMensagem(mensagem);
 			destinatario.setIdUsuarioDestino(usuarioService.findById(id));
@@ -53,6 +61,8 @@ public class MensagemService {
 			return mensagemSalva;
 		}else if(destino.equals(Destino.GRUPO)){
 			Grupo grupo = grupoService.findById(id);
+			mensagem.setDsTituloConversa(grupo.getNmGrupo());
+			mensagemSalva = mensagemRepository.save(mensagem);
 			List<GrupoUsuario> membrosGrupo = grupoUsuarioService.findAllUsersInGroup(grupo);
 			for (GrupoUsuario grupoUsuario : membrosGrupo) {
 				destinatario = new MensagemDestinatario();
@@ -78,7 +88,53 @@ public class MensagemService {
 	}
 
 	public List<Mensagem> getMensagensRecebidas(Long idOrigem) {
-		return mensagemRepository.getMensagensRecebidas(idOrigem);
+		
+		List<Mensagem> mensRecebidas = mensagemRepository.getMensagensRecebidasUsuarios(idOrigem);
+		List<Mensagem> mensEnviadas = mensagemRepository.getMensagensEnviadasUsuarios(idOrigem);
+		
+		List<Mensagem> mensagensFiltradas = new ArrayList<Mensagem>();
+		
+		for (Mensagem mensagemEnviada : mensEnviadas) {
+			
+			//4 - bento
+			Long idUsuarioDestino = mensagemDestinarioService.findByIdMensagem(mensagemEnviada).getIdUsuarioDestino().getIdUsuario();
+			Usuario usuarioDestino = usuarioService.findById(idUsuarioDestino);
+			
+			boolean achouUsuario = false;
+			for(Mensagem mensagemRecebida : mensRecebidas) {
+				Usuario usuarioEnvio = usuarioService.findById(mensagemRecebida.getIdUsuarioEnvio().getIdUsuario());
+				if(usuarioEnvio.getIdUsuario() == usuarioDestino.getIdUsuario()) {
+					achouUsuario = true;
+					
+					if(mensagemRecebida.getDtEnvio().isAfter(mensagemEnviada.getDtEnvio())) {
+						mensagemRecebida.setDsTituloConversa(usuarioEnvio.getNmExibicao());
+						mensagensFiltradas.add(mensagemRecebida);
+					}else {
+						mensagemEnviada.setDsTituloConversa(usuarioEnvio.getNmExibicao());
+						mensagensFiltradas.add(mensagemEnviada);
+					}
+					
+				}
+			}
+			
+			if(achouUsuario == false) {
+				mensagemEnviada.setDsTituloConversa(usuarioDestino.getNmExibicao());
+				mensagensFiltradas.add(mensagemEnviada);
+				
+			}
+			
+		}
+		
+		
+		
+		List<Mensagem> mensagensOrdenadas = new ArrayList<Mensagem>(mensagensFiltradas);
+		mensagensOrdenadas.sort(Comparator.comparing(Mensagem::getDtEnvio).reversed());
+		
+		return mensagensOrdenadas;
+	}
+
+	public List<Mensagem> getMensagensTrocadasBaseadaNoIdMensagem(Long idMensagem) {
+		return mensagemRepository.getMensagensTrocadasBaseadaNoIdMensagem(idMensagem);
 	}
 	
 }

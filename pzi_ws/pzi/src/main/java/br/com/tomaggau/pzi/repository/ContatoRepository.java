@@ -12,5 +12,7 @@ import br.com.tomaggau.pzi.model.Usuario;
 public interface ContatoRepository extends JpaRepository<Contato, Long>{
 	
 	List<Contato> findByIdUsuarioAndDtInativacaoIsNull(Usuario usuario);
+	
+	Contato findByIdUsuarioAndIdUsuarioContato(Usuario origem, Usuario contato);
 
 }

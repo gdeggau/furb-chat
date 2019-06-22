@@ -16,11 +16,7 @@ public class UsuarioService {
 	private UsuarioRepository usuarioRepository;
 	
 	//Criar usuario
-	public Usuario save(Usuario usuario) throws Exception {
-		if(usuarioRepository.findByNrTelefone(usuario.getNrTelefone()) != null)
-			throw new Exception("Este telefone já está cadastrado!");
-		usuario.setDtCadastro(LocalDateTime.now());
-		usuario.setFlAtivo('A');
+	public Usuario save(Usuario usuario) {
 		return usuarioRepository.save(usuario);
 	}
 	

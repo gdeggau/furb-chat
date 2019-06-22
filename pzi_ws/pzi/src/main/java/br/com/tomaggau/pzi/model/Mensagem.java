@@ -13,7 +13,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="mensagens")
-public class Mensagem {
+public class Mensagem{
 	
 	@Id
 	@Column(name="id_mensagem")
@@ -33,7 +33,22 @@ public class Mensagem {
 	@Column(name="fl_tipo_mensagem")
 	private char flTipoMensagem;
 	
+	@Column(name="fl_tipo_destino")
+	private char flDestino;
+	
+	@Column(name="ds_titulo_conversa")
+	private String dsTituloConversa;
+	
+	
 	//Getters and Setters
+
+	public String getDsTituloConversa() {
+		return dsTituloConversa;
+	}
+
+	public void setDsTituloConversa(String dsTituloConversa) {
+		this.dsTituloConversa = dsTituloConversa;
+	}
 
 	public long getIdMensagem() {
 		return idMensagem;
@@ -74,6 +89,16 @@ public class Mensagem {
 	public void setFlTipoMensagem(char flTipoMensagem) {
 		this.flTipoMensagem = flTipoMensagem;
 	}
+
+	public char getFlDestino() {
+		return flDestino;
+	}
+
+	public void setFlDestino(char flDestino) {
+		this.flDestino = flDestino;
+	}
+
 	
+
 	
 }

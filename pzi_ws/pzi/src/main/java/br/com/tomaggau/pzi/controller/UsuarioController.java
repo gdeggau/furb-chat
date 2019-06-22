@@ -1,5 +1,6 @@
 package br.com.tomaggau.pzi.controller;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -30,6 +31,10 @@ public class UsuarioController {
 	
 	@PostMapping("/usuarios")
 	public ResponseEntity<Usuario> salvarUsuario(@Valid @RequestBody Usuario usuarioEntity) throws Exception {
+		if(usuarioService.findByNrTelefone(usuarioEntity.getNrTelefone()) != null)
+			throw new Exception("Este telefone já está cadastrado!");
+		usuarioEntity.setDtCadastro(LocalDateTime.now());
+		usuarioEntity.setFlAtivo('A');
 		return ResponseEntity.ok().body(usuarioService.save(usuarioEntity));
 	}
 	
@@ -62,12 +67,11 @@ public class UsuarioController {
 	
 	@PutMapping("/usuarios/{id}")
 	public ResponseEntity<Usuario> atualizarUsuario(@PathVariable Long id, @Valid @RequestBody Usuario usuarioDetalhes) throws Exception {
-		System.out.println("entrou no update");
 		Usuario usuario = usuarioService.findById(id);
 		if(usuario == null)
 			return ResponseEntity.notFound().build();
 
-		BeanUtils.copyProperties(usuarioDetalhes, usuario, "id");
+		BeanUtils.copyProperties(usuarioDetalhes, usuario, "idUsuario");
 		Usuario atualizarUsuario = usuarioService.save(usuario);
 		return ResponseEntity.ok().body(atualizarUsuario);
 	}

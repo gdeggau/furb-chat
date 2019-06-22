@@ -36,7 +36,7 @@ public interface MensagemRepository extends JpaRepository<Mensagem, Long>{
 			  + " ORDER BY mens.dt_envio;", nativeQuery = true)
 	List<Mensagem> getMensagensTrocadasGrupo(Long idGrupo);
 	
-	@Query(value="select mens.*, mens_dest.id_usuario_destino from mensagens mens"
+	@Query(value="select mens.* from mensagens mens"
 			  + " inner join mensagens_destinatario mens_dest"
 			  + " on mens.id_mensagem = mens_dest.id_mensagem"
 			  + " inner join ("
@@ -48,6 +48,34 @@ public interface MensagemRepository extends JpaRepository<Mensagem, Long>{
 			  + " ) mens2"
 			  + " on mens2.id_usuario_envio = mens.id_usuario_envio and mens2.dt_envio = mens.dt_envio"
 			  + " order by mens.dt_envio desc",nativeQuery = true)
-	List<Mensagem> getMensagensRecebidas(Long id);
-
+	List<Mensagem> getMensagensRecebidasUsuarios(Long id);
+	
+	@Query(value="select mens.* from mensagens mens" + 
+			" inner join mensagens_destinatario mens_dest" + 
+			" on mens.id_mensagem = mens_dest.id_mensagem" + 
+			" inner join (" + 
+			"	select md.id_usuario_destino, max(m.dt_envio) dt_envio from mensagens_destinatario md" + 
+			"	inner join mensagens m" + 
+			"	on m.id_mensagem = md.id_mensagem" + 
+			"	where m.id_usuario_envio = ? and md.id_usuario_destino is not null" + 
+			"	group by md.id_usuario_destino" + 
+			" ) mens2" + 
+			" on mens2.id_usuario_destino = mens_dest.id_usuario_destino and mens2.dt_envio = mens.dt_envio" + 
+			" order by mens.dt_envio desc", nativeQuery = true)
+	List<Mensagem> getMensagensEnviadasUsuarios(Long id);
+	
+	@Query(value="select mens.* from mensagens mens" + 
+			" inner join (" + 
+			"	select mens_dest.id_usuario_destino, mens.id_usuario_envio from mensagens mens" + 
+			"	inner join mensagens_destinatario mens_dest" + 
+			"	on mens_dest.id_mensagem = mens.id_mensagem" + 
+			"	where mens.id_mensagem = ?" + 
+			" ) mens2" + 
+			" inner join mensagens_destinatario mens_dest" + 
+			" on mens.id_mensagem = mens_dest.id_mensagem" + 
+			" where (mens.id_usuario_envio = mens2.id_usuario_envio and mens_dest.id_usuario_destino = mens2.id_usuario_destino) " + 
+			" OR (mens.id_usuario_envio = mens2.id_usuario_destino and mens_dest.id_usuario_destino = mens2.id_usuario_envio)" + 
+			" order by mens.dt_envio;", nativeQuery = true)
+	List<Mensagem> getMensagensTrocadasBaseadaNoIdMensagem(Long id);
+		
 }

@@ -1,34 +1,41 @@
-"id_mensagem";"ds_mensagem";"dt_envio";"fl_tipo_mensagem";"id_usuario_envio"
-1;"Eae Nicolas cagalhaooo";"2019-05-17 00:01:32";"T";1
-2;"Fala ai mano, beleza?";"2019-05-17 00:02:40";"T";3
-3;"Tudo sussegado, fizesse trampo do Aurelio?";"2019-05-17 00:03:10";"T";1
-4;"Fiz sim mano, boto teu nome, dmr??";"2019-05-17 00:03:36";"T";3
-5;"Feshow, vamo dale";"2019-05-17 00:04:02";"T";1
-6;"Eae bento, me ensina Unity";"2019-05-17 00:04:53";"T";2
-7;"Sem tempo irmão (Y)";"2019-05-17 00:05:23";"T";5
-8;"Sem tempo irmão (Y)";"2019-05-17 00:05:48";"T";4
-9;"Então assim, vai agir de ma fée?";"2019-05-17 00:06:15";"T";2
-10;"Acontece né mano, malz aee";"2019-05-17 00:06:39";"T";4
-11;"O feiooo";"2019-05-17 00:12:00";"T";1
-12;"vamo pro wrngg ne , pco oscuna e pa";"2019-05-17 00:12:18";"T";1
-13;"boto uma @ eaa";"2019-05-17 00:12:30";"T";1
-14;"oo feoo, ai sim";"2019-05-17 00:12:49";"T";3
-15;"vamo dale bixao";"2019-05-17 00:12:58";"T";3
-16;"Bom dia pessoal";"2019-06-03 00:19:21";"T";1
-17;"Fala ai Deggau, trtanquilo?";"2019-06-03 00:44:14";"T";2
-18;"quem ai vai me carregar no trabalho???";"2019-06-03 00:47:00";"T";2
-19;"pessoal, nao to afim de fazer nenhum trabalho blz";"2019-06-04 20:44:34";"T";1
-20;"porra deixa de ser vadio mano";"2019-06-04 20:45:09";"T";5
-21;"eae degauuu";"2019-06-09 22:00:54";"T";2
-22;"testando belezaa";"2019-06-09 22:01:02";"T";2
-23;"flw";"2019-06-09 22:01:07";"T";2
-24;"testeeee";"2019-06-09 22:10:46";"T";3
-25;"ta funcionando porra";"2019-06-09 22:11:18";"T";3
-26;"chioteias as feia";"2019-06-09 22:11:44";"T";4
-27;"dalee";"2019-06-09 22:11:49";"T";4
-28;"isso é um teste";"2019-06-13 16:23:33";"T";2
-29;"bom diaaaaa bom diaaaaa";"2019-06-13 22:14:55";"T";1
-30;"eae Deggau";"2019-06-13 22:30:10";"T";1
-31;"Agora vai";"2019-06-13 22:33:33";"T";3
-32;"teste";"2019-06-13 23:49:10";"T";1
-33;"opa";"2019-06-14 00:09:10";"T";1
+"id_mensagem";"ds_mensagem";"dt_envio";"fl_tipo_mensagem";"id_usuario_envio";"fl_tipo_destino";"ds_titulo_conversa"
+1;"Eae Nicolas cagalhaooo";"2019-05-17 00:01:32";"T";1;"U";"Nicolas Viana"
+2;"Fala ai mano, beleza?";"2019-05-17 00:02:40";"T";3;"U";"Gabriel Deggau Schmidt"
+3;"Tudo sussegado, fizesse trampo do Aurelio?";"2019-05-17 00:03:10";"T";1;"U";"Nicolas Viana"
+4;"Fiz sim mano, boto teu nome, dmr??";"2019-05-17 00:03:36";"T";3;"U";"Gabriel Deggau Schmidt"
+5;"Feshow, vamo dale";"2019-05-17 00:04:02";"T";1;"U";"Nicolas Viana"
+6;"Eae bento, me ensina Unity";"2019-05-17 00:04:53";"T";2;"U";"Ayrton Senna"
+7;"Sem tempo irmão (Y)";"2019-05-17 00:05:23";"T";5;"U";"Cleber Tomazoni"
+8;"Sem tempo irmão (Y)";"2019-05-17 00:05:48";"T";4;"U";"Cleber Tomazoni"
+9;"Então assim, vai agir de ma fée?";"2019-05-17 00:06:15";"T";2;"U";"Gabriel Chico Bento"
+10;"Acontece né mano, malz aee";"2019-05-17 00:06:39";"T";4;"U";"Cleber Tomazoni"
+11;"O feiooo";"2019-05-17 00:12:00";"T";1;"U";"Nicolas Viana"
+12;"vamo pro wrngg ne , pco oscuna e pa";"2019-05-17 00:12:18";"T";1;"U";"Nicolas Viana"
+13;"boto uma @ eaa";"2019-05-17 00:12:30";"T";1;"U";"Nicolas Viana"
+14;"oo feoo, ai sim";"2019-05-17 00:12:49";"T";3;"U";"Gabriel Deggau Schmidt"
+15;"vamo dale bixao";"2019-05-17 00:12:58";"T";3;"U";"Gabriel Deggau Schmidt"
+16;"Bom dia pessoal";"2019-06-03 00:19:21";"T";1;"G";"Furb 2019"
+18;"quem ai vai me carregar no trabalho???";"2019-06-03 00:47:00";"T";2;"G";"Furb 2019"
+19;"pessoal, nao to afim de fazer nenhum trabalho blz";"2019-06-04 20:44:34";"T";1;"G";"Trabalhos furb"
+20;"porra deixa de ser vadio mano";"2019-06-04 20:45:09";"T";5;"G";"Trabalhos furb"
+21;"eae degauuu";"2019-06-09 22:00:54";"T";2;"U";"Gabriel Deggau Schmidt"
+22;"testando belezaa";"2019-06-09 22:01:02";"T";2;"U";"Gabriel Deggau Schmidt"
+23;"flw";"2019-06-09 22:01:07";"T";2;"U";"Gabriel Deggau Schmidt"
+24;"testeeee";"2019-06-09 22:10:46";"T";3;"U";"Gabriel Deggau Schmidt"
+25;"ta funcionando porra";"2019-06-09 22:11:18";"T";3;"U";"Gabriel Deggau Schmidt"
+26;"chioteias as feia";"2019-06-09 22:11:44";"T";4;"U";"Gabriel Deggau Schmidt"
+27;"dalee";"2019-06-09 22:11:49";"T";4;"U";"Gabriel Deggau Schmidt"
+28;"isso é um teste";"2019-06-13 16:23:33";"T";2;"U";"Nicolas Viana"
+30;"eae Deggau";"2019-06-13 22:30:10";"T";2;"U";"Gabriel Deggau Schmidt"
+31;"Agora vai";"2019-06-13 22:33:33";"T";3;"U";"Gabriel Deggau Schmidt"
+32;"teste";"2019-06-13 23:49:10";"T";1;"U";"Nicolas Viana"
+33;"opa";"2019-06-14 00:09:10";"T";1;"U";"Nicolas Viana"
+36;"teste campo destino";"2019-06-16 18:35:17";"T";1;"U";"Nicolas Viana"
+38;"boa noite cleber";"2019-06-21 00:23:00";"T";1;"U";"Cleber Tomazoni"
+39;"funcionou?";"2019-06-21 00:24:32";"T";1;"U";"Gabriel Chico Bento"
+40;"bom ayrton";"2019-06-21 02:36:18";"T";1;"U";"Ayrton Senna"
+41;"ai deggau vtnc teste porra";"2019-06-21 03:31:13";"T";3;"U";"Gabriel Deggau Schmidt"
+42;"vamo ver se funcona";"2019-06-21 03:31:41";"T";2;"U";"Gabriel Deggau Schmidt"
+43;"fdp";"2019-06-21 04:05:20";"T";1;"U";"Gabriel Chico Bento"
+44;"celular da samsung";"2019-06-21 19:14:19";"T";1;"U";"Teste"
+45;"ai o caralho vamo ver se ta funcionando essa porra";"2019-06-21 22:28:20";"T";1;"U";"cuca de banana"

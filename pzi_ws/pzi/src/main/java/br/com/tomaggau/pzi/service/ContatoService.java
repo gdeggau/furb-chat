@@ -2,6 +2,8 @@ package br.com.tomaggau.pzi.service;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,13 +36,6 @@ public class ContatoService{
 		contato.setDtVinculo(LocalDateTime.now());
 		contato.setFlAtivo('A');
 		
-		Contato contato2 = new Contato();
-		contato2.setIdUsuario(usuarioContato);
-		contato2.setIdUsuarioContato(usuarioLogado);
-		contato2.setDtVinculo(LocalDateTime.now());
-		contato2.setFlAtivo('A');
-		contatoRepository.save(contato2);
-		
 		return contatoRepository.save(contato);
 	}
 	
@@ -53,7 +48,28 @@ public class ContatoService{
 			usuariosContato.add(contato.getIdUsuarioContato());
 		}
 		
+		Collections.sort(usuariosContato, new Comparator<Usuario>() {
+            public int compare(Usuario s1, Usuario s2) {
+                  if(s1.getNmExibicao() != null && s2.getNmExibicao() != null && s1.getNmExibicao().compareTo(s1.getNmExibicao()) != 0) {
+                      return s1.getNmExibicao().compareTo(s2.getNmExibicao());
+                  } else {
+                    return s1.getNrTelefone().compareTo(s2.getNrTelefone());
+                 }
+             }
+		});
+		
 		return usuariosContato;
+	}
+
+	public void deletarContato(Long idOrigem, Long idDestino) {
+		Usuario origem = usuarioService.findById(idOrigem);
+		Usuario destino = usuarioService.findById(idDestino);
+		
+		Contato contato1 = contatoRepository.findByIdUsuarioAndIdUsuarioContato(origem, destino);
+		contato1.setDtInativacao(LocalDateTime.now());
+		contato1.setFlAtivo('I');
+		contatoRepository.save(contato1);
+		
 	}
 
 	

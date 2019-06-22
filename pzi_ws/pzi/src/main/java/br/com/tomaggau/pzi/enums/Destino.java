@@ -2,16 +2,16 @@ package br.com.tomaggau.pzi.enums;
 
 public enum Destino {
 	
-	USUARIO("U"),
-	GRUPO("G");
+	USUARIO('U'),
+	GRUPO('G');
 	
-	private String descricao;
+	private char descricao;
 	 
-	Destino(String descricao) {
+	Destino(char descricao) {
         this.descricao = descricao;
     }
  
-    public String getDescricao() {
+    public char getDescricao() {
         return descricao;
     }
 
