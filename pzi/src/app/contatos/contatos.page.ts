@@ -51,7 +51,34 @@ export class ContatosPage {
     await alertPrompt.present();
   }
 
+  async criarGrupo() {
+    const alertPrompt = await this.alert.create({
+      header: 'Novo grupo',
+      inputs: [
+        {
+          placeholder: 'Nome do grupo'
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancelar'
+        },
+        {
+          text: 'Criar grupo',
+          handler: data => {
+            let nome = data[0];
+            if (nome) {
+              this.contatosService.postGrupo(nome, this.utils.getUsuarioLogado());
+            }
+          }
+        }
+      ]
+    });
+    await alertPrompt.present();
+  }
+
   iniciarConversa(contato: any) {
     this.router.navigate(['conversa/'+contato.idUsuario]);
+    //this.router.navigate(['grupo/'+contato.?]);
   }
 }

@@ -6,9 +6,17 @@
 
 <ion-content>
   <form [formGroup]="formLogin" (ngSubmit)="logar()">
-    <input type="text" formControlName="nrTelefone" placeholder="Telefone">
-    <input type="password" formControlName="dsSenha" placeholder="Senha">
-    <input type="submit" value="Entrar">
+    <ion-list inset>
+      <ion-item>
+        <ion-label position="floating">Telefone</ion-label>
+        <ion-input type="text" formControlName="nrTelefone" placeholder="Telefone"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Senha</ion-label>
+        <ion-input type="password" formControlName="dsSenha" placeholder="Senha"></ion-input>
+      </ion-item>
+    </ion-list>
+    <button ion-button>Entrar</button>
   </form>
   <a href="cadastro"><p>Não possuo cadastro</p></a>
   <p>Esqueci minha senha</p>

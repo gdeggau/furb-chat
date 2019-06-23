@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      <a href="tabs"><ion-icon name="arrow-back"></ion-icon></a>
+      <img src="../../assets/avatar/terminator.png">
+      <ion-label>Nome do grupo</ion-label>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+</ion-content>
+
+<ion-footer>
+  <form [formGroup]="formMensagem" (ngSubmit)="enviarMensagemTexto()">
+    <input type="text" formControlName="dsMensagem" placeholder="Digite aqui...">
+  </form>
+</ion-footer>

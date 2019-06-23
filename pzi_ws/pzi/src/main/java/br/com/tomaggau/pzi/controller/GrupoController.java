@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,6 +23,7 @@ import br.com.tomaggau.pzi.service.UsuarioService;
 
 @RestController
 @RequestMapping("/pzi")
+@CrossOrigin(origins = {"http://localhost:8100", "http://localhost:8080"})
 public class GrupoController {
 	
 	@Autowired
@@ -65,8 +67,7 @@ public class GrupoController {
 	}
 	
 	@PostMapping("/grupos/usuarios/{id}")
-	public ResponseEntity<GrupoUsuario> adcionarUsuarioGrupo(@PathVariable Long id, @RequestBody @Valid GrupoUsuario grupoUsuario){
-		Grupo grupo = grupoService.findById(grupoUsuario.getIdGrupo().getIdGrupo());
+	public ResponseEntity<GrupoUsuario> adcionarUsuarioGrupo(@PathVariable Long id, @RequestBody @Valid Grupo grupo){
 		Usuario usuario = usuarioService.findById(id);
 		
 		if(grupo == null || usuario == null) {

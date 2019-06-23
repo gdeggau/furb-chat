@@ -3,8 +3,8 @@
     <ion-title>
       <a href="tabs"><ion-icon name="arrow-back"></ion-icon></a>
       <img src="../../assets/avatar/luke.png">
-      <ion-label *ngIf="usuario != undefined">
-        <!--p-->{{mensagem.dsTituloConversa}}<!--/p-->
+      <ion-label *ngIf="usuario">
+        <!--p-->{{usuario.nmExibicao}}<!--/p-->
         <!--p>Ocupado</p-->
       </ion-label>
     </ion-title>
@@ -12,7 +12,9 @@
 </ion-header>
 
 <ion-content>
-  <table *ngIf="mensagens != undefined">
+  <!--ion-refresher slot="fixed" pullFactor="0.5" pullMin="100" pullMax="200">
+    <ion-refresher-content-->
+  <table *ngIf="mensagens && usuario">
     <tr *ngFor="let mensagem of mensagens">
       <td *ngIf="mensagem.idUsuarioEnvio.idUsuario != usuario.idUsuario">
         <p class="msg minha-msg">{{mensagem.dsMensagem}}</p>
@@ -22,6 +24,8 @@
       </td>
     </tr>
   </table>
+    <!--/ion-refresher-content>
+  </ion-refresher-->
 </ion-content>
 
 <ion-footer>

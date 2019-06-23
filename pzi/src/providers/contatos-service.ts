@@ -20,4 +20,17 @@ export class ContatosService {
             console.log(error);
         });
     }
+
+    postGrupo(nome: string, usuario: any) {
+        let body = {
+            nmGrupo: nome,
+            idUsuarioCadastro: usuario
+        }
+        this.http.post(AppConfigs.API_ENDPOINT + '/grupos', body).
+        subscribe(grupo => {
+            console.log(grupo);
+        }, error => {
+            console.log(error);
+        });
+    }
 }
