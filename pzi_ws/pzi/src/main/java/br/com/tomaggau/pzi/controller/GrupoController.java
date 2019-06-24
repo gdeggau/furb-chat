@@ -67,7 +67,8 @@ public class GrupoController {
 	}
 	
 	@PostMapping("/grupos/usuarios/{id}")
-	public ResponseEntity<GrupoUsuario> adcionarUsuarioGrupo(@PathVariable Long id, @RequestBody @Valid Grupo grupo){
+	public ResponseEntity<GrupoUsuario> adcionarUsuarioGrupo(@PathVariable Long id, @RequestBody @Valid GrupoUsuario grupoUsuario){
+		Grupo grupo = grupoService.findById(grupoUsuario.getIdGrupo().getIdGrupo());
 		Usuario usuario = usuarioService.findById(id);
 		
 		if(grupo == null || usuario == null) {

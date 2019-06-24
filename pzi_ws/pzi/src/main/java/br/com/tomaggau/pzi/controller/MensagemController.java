@@ -42,10 +42,16 @@ public class MensagemController {
 		return ResponseEntity.ok().body(mensagemService.save(idDestino, mensagem, Destino.GRUPO));
 	}
 	
-	//buscar a conversa com base no usuário de envio e usuário destino
+	//busca conversas baseada no logado e no destino (usuario/grupo)
 	@GetMapping("/mensagens/usuario/{idOrigem}/{idDestino}")
 	public ResponseEntity<List<Mensagem>> getMensagensTrocadasUsuario(@PathVariable(value="idOrigem") Long idOrigem, @PathVariable(value="idDestino") Long idDestino) {
-		return ResponseEntity.ok().body(mensagemService.getMensagensTrocadasUsuario(idOrigem, idDestino));
+		return ResponseEntity.ok().body(mensagemService.getMensagenTrocadasEntreLogadoEDestino(idOrigem, idDestino, Destino.USUARIO));
+	}
+	
+	//busca conversas baseada no logado e no destino (usuario/grupo)
+	@GetMapping("/mensagens/grupo/{idOrigem}/{idDestino}")
+	public ResponseEntity<List<Mensagem>> getMensagensTrocadasGrupo(@PathVariable(value="idOrigem") Long idOrigem, @PathVariable(value="idDestino") Long idDestino) {
+		return ResponseEntity.ok().body(mensagemService.getMensagenTrocadasEntreLogadoEDestino(idOrigem, idDestino, Destino.GRUPO));
 	}
 	
 	//id de quem eu quero ver as mensagens

@@ -13,6 +13,8 @@ import br.com.tomaggau.pzi.model.Mensagem;
 @Repository
 public interface MensagemRepository extends JpaRepository<Mensagem, Long>{
 	
+	Mensagem findByIdMensagem(Long id);
+	
 	@Query(value = "SELECT *"
 				+ " FROM mensagens mens" 
 				+ " INNER JOIN mensagens_destinatario mens_des" 
@@ -77,5 +79,27 @@ public interface MensagemRepository extends JpaRepository<Mensagem, Long>{
 			" OR (mens.id_usuario_envio = mens2.id_usuario_destino and mens_dest.id_usuario_destino = mens2.id_usuario_envio)" + 
 			" order by mens.dt_envio;", nativeQuery = true)
 	List<Mensagem> getMensagensTrocadasBaseadaNoIdMensagem(Long id);
+	
+	@Query(value="select mens.* from mensagens mens" + 
+			" inner join mensagens_destinatario mens_dest" + 
+			" on mens.id_mensagem = mens_dest.id_mensagem" + 
+			" inner join grupos_usuarios gpuser" + 
+			" on gpuser.id_grupos_usuarios = mens_dest.id_grupos_usuarios_destino" + 
+			" inner join grupos g" + 
+			" on g.id_grupo = gpuser.id_grupo" + 
+			" inner join (" + 
+			"	select gp.id_grupo, max(m.dt_envio) dt_envio, gp_user.id_usuario from mensagens_destinatario md" + 
+			"	inner join mensagens m" + 
+			"	on m.id_mensagem = md.id_mensagem" + 
+			"	inner join grupos_usuarios gp_user" + 
+			"	on gp_user.id_grupos_usuarios = md.id_grupos_usuarios_destino" + 
+			"	inner join grupos gp" + 
+			"	on gp.id_grupo = gp_user.id_grupo" + 
+			"	where gp_user.id_usuario = ?" + 
+			"	group by gp.id_grupo" + 
+			" ) mens2" + 
+			" on mens2.id_grupo = g.id_grupo and mens2.dt_envio = mens.dt_envio and mens2.id_usuario = gpuser.id_usuario" + 
+			" order by mens.dt_envio desc", nativeQuery = true)
+	List<Mensagem> getMensagensDosGrupos(Long idOrigem);
 		
 }

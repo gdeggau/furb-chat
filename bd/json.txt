@@ -14,9 +14,9 @@ localhost:8080/pzi/usuario/
 //enviar mensagem usuario
 localhost:8080/pzi/mensagens/usuario/2
 {
-	"dsMensagem": "Eae Cleber",
+	"dsMensagem": "boa noite cleber",
 	"idUsuarioEnvio": {
-		"id_usuario": 1
+		"idUsuario": 1
 	}
 }
 

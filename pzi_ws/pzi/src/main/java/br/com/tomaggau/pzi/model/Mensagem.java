@@ -39,8 +39,19 @@ public class Mensagem{
 	@Column(name="ds_titulo_conversa")
 	private String dsTituloConversa;
 	
+	@Column(name="id_destino")
+	private long idDestino;
+	
 	
 	//Getters and Setters
+
+	public long getIdDestino() {
+		return idDestino;
+	}
+
+	public void setIdDestino(long idDestino) {
+		this.idDestino = idDestino;
+	}
 
 	public String getDsTituloConversa() {
 		return dsTituloConversa;

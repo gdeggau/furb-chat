@@ -12,5 +12,7 @@ import br.com.tomaggau.pzi.model.GrupoUsuario;
 public interface GrupoUsuarioRepository extends JpaRepository<GrupoUsuario, Long>{
 	
 	List<GrupoUsuario> findByIdGrupoAndDtInativacaoIsNull(Grupo grupo);
+	
+	
 
 }

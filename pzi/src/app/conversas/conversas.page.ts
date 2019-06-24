@@ -22,12 +22,13 @@ export class ConversasPage {
     this.utils.verificarUsuarioLogado();
     this.conversasService.getConversas(this.utils.getUsuarioLogado().idUsuario).subscribe(conversas => {
       this.conversas = conversas;
+      console.log(conversas)
     });
   }
 
   formatarData(data: string): string {
     let moment = require('moment');
-    return moment(data).format('LT');
+    return moment(data).format('lll');
   }
 
   abrirConversa(conversa: any) {

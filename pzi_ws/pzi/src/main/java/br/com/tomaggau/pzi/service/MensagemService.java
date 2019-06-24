@@ -2,13 +2,9 @@ package br.com.tomaggau.pzi.service;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import javax.validation.Valid;
-
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -44,6 +40,7 @@ public class MensagemService {
 		mensagem.setDtEnvio(LocalDateTime.now());
 		mensagem.setFlTipoMensagem('T');
 		mensagem.setFlDestino(destino.getDescricao());
+		mensagem.setIdDestino(id);
 		Mensagem mensagemSalva;
 		
 		MensagemDestinatario destinatario;
@@ -91,41 +88,42 @@ public class MensagemService {
 		
 		List<Mensagem> mensRecebidas = mensagemRepository.getMensagensRecebidasUsuarios(idOrigem);
 		List<Mensagem> mensEnviadas = mensagemRepository.getMensagensEnviadasUsuarios(idOrigem);
+		List<Mensagem> mensGrupos = mensagemRepository.getMensagensDosGrupos(idOrigem);
 		
 		List<Mensagem> mensagensFiltradas = new ArrayList<Mensagem>();
 		
-		for (Mensagem mensagemEnviada : mensEnviadas) {
-			
-			//4 - bento
-			Long idUsuarioDestino = mensagemDestinarioService.findByIdMensagem(mensagemEnviada).getIdUsuarioDestino().getIdUsuario();
-			Usuario usuarioDestino = usuarioService.findById(idUsuarioDestino);
-			
-			boolean achouUsuario = false;
-			for(Mensagem mensagemRecebida : mensRecebidas) {
-				Usuario usuarioEnvio = usuarioService.findById(mensagemRecebida.getIdUsuarioEnvio().getIdUsuario());
-				if(usuarioEnvio.getIdUsuario() == usuarioDestino.getIdUsuario()) {
-					achouUsuario = true;
-					
-					if(mensagemRecebida.getDtEnvio().isAfter(mensagemEnviada.getDtEnvio())) {
-						mensagemRecebida.setDsTituloConversa(usuarioEnvio.getNmExibicao());
-						mensagensFiltradas.add(mensagemRecebida);
-					}else {
-						mensagemEnviada.setDsTituloConversa(usuarioEnvio.getNmExibicao());
-						mensagensFiltradas.add(mensagemEnviada);
+		if(mensEnviadas.size() > 0) {
+			for (Mensagem mensagemEnviada : mensEnviadas) {
+				Long idUsuarioDestino = mensagemDestinarioService.findByIdMensagem(mensagemEnviada).getIdUsuarioDestino().getIdUsuario();
+				Usuario usuarioDestino = usuarioService.findById(idUsuarioDestino);
+				boolean achouUsuario = false;
+				for(Mensagem mensagemRecebida : mensRecebidas) {
+					Usuario usuarioEnvio = usuarioService.findById(mensagemRecebida.getIdUsuarioEnvio().getIdUsuario());
+					if(usuarioEnvio.getIdUsuario() == usuarioDestino.getIdUsuario()) {
+						achouUsuario = true;
+						if(mensagemRecebida.getDtEnvio().isAfter(mensagemEnviada.getDtEnvio())) {
+							mensagemRecebida.setDsTituloConversa(usuarioEnvio.getNmExibicao());
+							mensagensFiltradas.add(mensagemRecebida);
+						} else {
+							mensagemEnviada.setDsTituloConversa(usuarioEnvio.getNmExibicao());
+							mensagensFiltradas.add(mensagemEnviada);
+						}
 					}
-					
+				}
+				if(achouUsuario == false) {
+					mensagemEnviada.setDsTituloConversa(usuarioDestino.getNmExibicao());
+					mensagensFiltradas.add(mensagemEnviada);
 				}
 			}
-			
-			if(achouUsuario == false) {
-				mensagemEnviada.setDsTituloConversa(usuarioDestino.getNmExibicao());
-				mensagensFiltradas.add(mensagemEnviada);
-				
+		} else {
+			for (Mensagem mensagRecebida : mensRecebidas) {
+				mensagensFiltradas.add(mensagRecebida);
 			}
-			
 		}
 		
-		
+		for (Mensagem mensagem : mensGrupos) {
+			mensagensFiltradas.add(mensagem);
+		}		
 		
 		List<Mensagem> mensagensOrdenadas = new ArrayList<Mensagem>(mensagensFiltradas);
 		mensagensOrdenadas.sort(Comparator.comparing(Mensagem::getDtEnvio).reversed());
@@ -135,6 +133,20 @@ public class MensagemService {
 
 	public List<Mensagem> getMensagensTrocadasBaseadaNoIdMensagem(Long idMensagem) {
 		return mensagemRepository.getMensagensTrocadasBaseadaNoIdMensagem(idMensagem);
+	}
+
+	public List<Mensagem> getMensagenTrocadasEntreLogadoEDestino(Long idOrigem, Long idDestino, Destino destino) {
+
+		if(destino.equals(Destino.USUARIO)) {
+			return getMensagensTrocadasUsuario(idOrigem, idDestino);
+		}else {
+			return getMensagensTrocadasGrupo(idDestino);
+		}
+		
+	}
+	
+	public Mensagem findByIdMensagem(Long id) {
+		return mensagemRepository.findByIdMensagem(id);
 	}
 	
 }

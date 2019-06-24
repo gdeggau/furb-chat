@@ -6,8 +6,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.tomaggau.pzi.enums.Destino;
 import br.com.tomaggau.pzi.model.Grupo;
 import br.com.tomaggau.pzi.model.GrupoUsuario;
+import br.com.tomaggau.pzi.model.Mensagem;
 import br.com.tomaggau.pzi.model.Usuario;
 import br.com.tomaggau.pzi.repository.GrupoRepository;
 import br.com.tomaggau.pzi.repository.GrupoUsuarioRepository;
@@ -21,12 +23,28 @@ public class GrupoService {
 	@Autowired
 	private GrupoUsuarioRepository grupoUsuarioRepository;
 	
+	@Autowired
+	private MensagemService mensagemService;
+	
+	@Autowired 
+	private UsuarioService us;
+	
 	//Criar grupo
 	public Grupo save(Grupo grupo) {
 		grupo.setDtCadastro(LocalDateTime.now());
 		grupo.setFlAtivo('A');
 		grupo = grupoRepository.save(grupo);
 		adcionarUsuarioGrupo(grupo.getIdUsuarioCadastro(), grupo);
+		
+		List<GrupoUsuario> membrosGrupo = grupoUsuarioRepository.findByIdGrupoAndDtInativacaoIsNull(grupo);
+		for (GrupoUsuario grupoUsuario : membrosGrupo) {
+			Mensagem mensagemBemVindo = new Mensagem();
+			mensagemBemVindo.setDsMensagem("Olá "+ grupoUsuario.getIdUsuario().getNmExibicao() +", seja bem vindo ao grupo "+grupo.getNmGrupo());
+			mensagemBemVindo.setIdUsuarioEnvio(us.findById(0l));
+			mensagemService.save(grupo.getIdGrupo(), mensagemBemVindo, Destino.GRUPO);
+			
+		}
+		
 		return grupo;
 	}
 	
@@ -54,7 +72,14 @@ public class GrupoService {
 		grupoUsuario.setIdGrupo(grupo);
 		grupoUsuario.setDtRegistro(LocalDateTime.now());
 		grupoUsuario.setFlAtivo('A');
-		return grupoUsuarioRepository.save(grupoUsuario);
+		grupoUsuario = grupoUsuarioRepository.save(grupoUsuario);
+		
+		Mensagem mensagemBemVindo = new Mensagem();
+		mensagemBemVindo.setDsMensagem("Olá "+ grupoUsuario.getIdUsuario().getNmExibicao() +", seja bem vindo ao grupo "+grupo.getNmGrupo());
+		mensagemBemVindo.setIdUsuarioEnvio(us.findById(0l));
+		mensagemService.save(grupo.getIdGrupo(), mensagemBemVindo, Destino.GRUPO);
+			
+		return grupoUsuario;
 	}
 	
 	//Remover usuario do grupo
