@@ -32,7 +32,10 @@ export class ConversasPage {
   }
 
   abrirConversa(conversa: any) {
-    this.router.navigate(['conversa/'+conversa.idUsuarioEnvio.idUsuario]);
-    //this.router.navigate(['grupo/'+conversa.?]);
+    if (conversa.flDestino == 'U') {
+      this.router.navigate(['conversa/'+conversa.idDestino]);
+    } else {
+      this.router.navigate(['grupo/'+conversa.idDestino]);
+    }
   }
 }

@@ -3,13 +3,26 @@
     <ion-title>
       <a href="tabs"><ion-icon name="arrow-back"></ion-icon></a>
       <img src="../../assets/avatar/terminator.png">
-      <ion-label>Nome do grupo</ion-label>
+      <ion-label *ngIf="grupo">{{grupo.nmGrupo}}</ion-label>
+      <p (click)="adicionarContatosGrupo()">Adicionar integrantes</p>
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <table *ngIf="mensagens">
+    <tr *ngFor="let mensagem of mensagens">
+      <td *ngIf="obterTipoRemetente(mensagem) == 0">
+        <p class="msg msg-sistema">{{mensagem.dsMensagem}}</p>
+      </td>
+      <td *ngIf="obterTipoRemetente(mensagem) == 1">
+        <p class="msg minha-msg">{{mensagem.dsMensagem}}</p>
+      </td>
+      <td *ngIf="obterTipoRemetente(mensagem) == 2">
+        <p class="msg">{{mensagem.dsMensagem}}</p>
+      </td>
+    </tr>
+  </table>
 </ion-content>
 
 <ion-footer>

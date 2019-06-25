@@ -12,9 +12,18 @@ export class GrupoService {
         return this.http.get(AppConfigs.API_ENDPOINT + '/grupos/' + id);
     }
 
+    getConversaGrupo(id: number): Observable<any> {
+        return this.http.get(AppConfigs.API_ENDPOINT + '/mensagens/grupo/' + id);
+    }
+
     postContatosGrupo(idGrupo: number, contatosSelecionados: any) {
-        contatosSelecionados.forEach(contato => {
-            this.http.post(AppConfigs.API_ENDPOINT + '/grupos/usuarios/' + contato.idUsuario, this.getGrupo(idGrupo)).
+        let body = {
+            idGrupo: {
+                idGrupo: idGrupo
+            }
+        }
+        contatosSelecionados.forEach(idUsuarioContato => {
+            this.http.post(AppConfigs.API_ENDPOINT + '/grupos/usuarios/' + idUsuarioContato, body).
             subscribe(res => {
                 console.log(res);
             }, error => {

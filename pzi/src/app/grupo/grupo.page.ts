@@ -12,6 +12,8 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
   styleUrls: ['../conversa/conversa.page.scss'],
 })
 export class GrupoPage implements OnInit {
+  private grupo: any;
+  private mensagens: Array<any>;
   private formMensagem: FormGroup;
 
   private id = this.activatedRoute.snapshot.params['id'];
@@ -23,6 +25,15 @@ export class GrupoPage implements OnInit {
               public activatedRoute: ActivatedRoute,
               public formGroup: FormBuilder) { }
 
+  ionViewDidEnter() {
+    this.grupoService.getGrupo(this.id).subscribe(grupo => {
+      this.grupo = grupo;
+    });
+    this.grupoService.getConversaGrupo(this.id).subscribe(mensagens => {
+      this.mensagens = mensagens;
+    });
+  }
+
   iniciarForm() {
     this.formMensagem = this.formGroup.group({
       'dsMensagem': new FormControl('', Validators.required)
@@ -32,6 +43,16 @@ export class GrupoPage implements OnInit {
   ngOnInit() {
     this.iniciarForm();
     this.utils.verificarUsuarioLogado();
+  }
+
+  obterTipoRemetente(msg: any): number {
+    if (msg.idUsuarioEnvio.idUsuario == 0) {
+      return 0;
+    } else if (msg.idUsuarioEnvio.idUsuario == this.utils.getUsuarioLogado().idUsuario) {
+      return 1;
+    } else {
+      return 2;
+    }
   }
 
   enviarMensagemTexto() {
@@ -55,7 +76,7 @@ export class GrupoPage implements OnInit {
     return lista;
   }
 
-  async adicionarContatoGrupo() {
+  async adicionarContatosGrupo() {
     const alertCheckbox = await this.alert.create({
       header: 'Selecione os contatos:',
       inputs: this.obterContatosAsCheckbox(),
