@@ -3,6 +3,7 @@ import { ContatosService } from 'src/providers/contatos-service';
 import { UtilsService } from '../commons/utils.service';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { timer } from 'rxjs';
 
 @Component({
   selector: 'app-contatos',
@@ -10,6 +11,7 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['contatos.page.scss']
 })
 export class ContatosPage {
+  private usuario: any;
   private contatos: Array<any>;
 
   constructor(public contatosService: ContatosService,
@@ -18,11 +20,18 @@ export class ContatosPage {
               public alert: AlertController) {
   }
 
+  atualizarListaContatos() {
+    timer(0, 2000).subscribe(() => {
+      this.contatosService.getContatos(this.usuario).subscribe(contatos => {
+        this.contatos = contatos;
+      });
+    });
+  }
+
   ionViewDidEnter() {
     this.utils.verificarUsuarioLogado();
-    this.contatosService.getContatos(this.utils.getUsuarioLogado().idUsuario).subscribe(contatos => {
-      this.contatos = contatos;
-    });
+    this.usuario = this.utils.getUsuarioLogado().idUsuario;
+    this.atualizarListaContatos();
   }
 
   async adicionarContato() {
@@ -79,6 +88,5 @@ export class ContatosPage {
 
   iniciarConversa(contato: any) {
     this.router.navigate(['conversa/'+contato.idUsuario]);
-    //this.router.navigate(['grupo/'+contato.?]);
   }
 }

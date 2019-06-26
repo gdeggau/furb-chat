@@ -5,6 +5,7 @@ import { ContatosService } from 'src/providers/contatos-service';
 import { UtilsService } from '../commons/utils.service';
 import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { timer } from 'rxjs';
 
 @Component({
   selector: 'app-grupo',
@@ -25,13 +26,19 @@ export class GrupoPage implements OnInit {
               public activatedRoute: ActivatedRoute,
               public formGroup: FormBuilder) { }
 
+  async atualizarConversa() {
+    timer(0, 2000).subscribe(() => {
+      this.grupoService.getConversaGrupo(this.id).subscribe(mensagens => {
+        this.mensagens = mensagens;
+      });
+    });
+  }
+
   ionViewDidEnter() {
     this.grupoService.getGrupo(this.id).subscribe(grupo => {
       this.grupo = grupo;
     });
-    this.grupoService.getConversaGrupo(this.id).subscribe(mensagens => {
-      this.mensagens = mensagens;
-    });
+    this.atualizarConversa();
   }
 
   iniciarForm() {

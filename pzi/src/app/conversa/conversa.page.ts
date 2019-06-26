@@ -3,6 +3,7 @@ import { ConversaService } from 'src/providers/conversa-service';
 import { FormBuilder, FormControl, Validators, FormGroup } from '@angular/forms';
 import { UtilsService } from '../commons/utils.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { timer } from 'rxjs';
 
 @Component({
   selector: 'app-conversa',
@@ -23,13 +24,19 @@ export class ConversaPage {
               public activatedRoute: ActivatedRoute) {
   }
 
+  async atualizarConversa() {
+    timer(0, 2000).subscribe(() => {
+      this.conversaService.getConversa(this.id).subscribe(mensagens => {
+        this.mensagens = mensagens;
+      });
+    });
+  }
+
   ionViewDidEnter() {
     this.conversaService.getUsuarioConversa(this.id).subscribe(usuario => {
       this.usuario = usuario;
     });
-    this.conversaService.getConversa(this.id).subscribe(mensagens => {
-      this.mensagens = mensagens;
-    });
+    this.atualizarConversa();
   }
 
   iniciarForm() {
