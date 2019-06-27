@@ -9,7 +9,7 @@ declare const require: any;
 @Component({
   selector: 'app-cadastro',
   templateUrl: './cadastro.page.html',
-  styleUrls: ['./cadastro.page.scss'],
+  styleUrls: ['../login/login.page.scss'],
 })
 export class CadastroPage implements OnInit {
 

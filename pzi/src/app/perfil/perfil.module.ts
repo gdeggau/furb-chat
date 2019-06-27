@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { PerfilPage } from './perfil.page';
+import { UtilsService } from '../commons/utils.service';
 
 @NgModule({
   imports: [
@@ -11,6 +12,9 @@ import { PerfilPage } from './perfil.page';
     CommonModule,
     FormsModule,
     RouterModule.forChild([{ path: '', component: PerfilPage }])
+  ],
+  providers: [
+    UtilsService
   ],
   declarations: [PerfilPage]
 })

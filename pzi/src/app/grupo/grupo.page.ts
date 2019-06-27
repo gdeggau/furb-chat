@@ -52,6 +52,13 @@ export class GrupoPage implements OnInit {
     this.utils.verificarUsuarioLogado();
   }
 
+  isAdm() {
+    if (this.grupo) {
+      return this.utils.getUsuarioLogado().idUsuario == this.grupo.idUsuarioCadastro.idUsuario;
+    }
+    return false;
+  }
+
   obterTipoRemetente(msg: any): number {
     if (msg.idUsuarioEnvio.idUsuario == 0) {
       return 0;
@@ -72,6 +79,7 @@ export class GrupoPage implements OnInit {
   obterContatosAsCheckbox() {
     let lista = [];
     this.contatosService.getContatos(this.utils.getUsuarioLogado().idUsuario).subscribe(contatos => {
+    //this.contatosService.getContatosForaDoGrupo(this.utils.getUsuarioLogado().idUsuario, this.grupo.idGrupo).subscribe(contatos => {
       contatos.forEach(contato => {
         lista.push({
           type: 'checkbox',

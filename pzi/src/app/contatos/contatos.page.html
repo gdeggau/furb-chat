@@ -10,19 +10,19 @@
   <ion-list lines="none">
     <ion-item (click)="adicionarContato()">
       <ion-avatar slot="start">
-        <img src="../../assets/avatar/esb.png">
+        <img src="../../assets/default/adicionar-contato.png">
       </ion-avatar>
       <ion-label>Adicionar novo contato</ion-label>
     </ion-item>
     <ion-item (click)="criarGrupo()">
       <ion-avatar slot="start">
-        <img src="../../assets/avatar/bttf.png">
+        <img src="../../assets/default/criar-grupo.png">
       </ion-avatar>
       <ion-label>Criar novo grupo</ion-label>
     </ion-item>
     <ion-item (click)="iniciarConversa(contato)" *ngFor="let contato of contatos">
       <ion-avatar slot="start">
-        <img src="../../assets/avatar/batman.png">
+        <img src="../../assets/default/usuario.png">
       </ion-avatar>
       <ion-label>{{contato.nmExibicao}}</ion-label>
     </ion-item>

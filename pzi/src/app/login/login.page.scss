@@ -1,7 +1,23 @@
-button {
+table {
     width: 80%;
+    margin: 30px auto;
+}
+tr {
+    font-size: 18px;
+}
+tr a {
+    color: #000000;
+    text-align: center;
+    text-decoration: none;
+}
+ion-input, textarea {
+    width: 100%;
+    background-color: #EBEBEB;
+}
+button {
+    width: 100%;
     padding: 10px;
     color: #FFFFFF;
-    background-color: #3880FF;
-    border-radius: 10px;
+    font-size: 18px;
+    background-color: #57B846;
 }

@@ -2,9 +2,9 @@
   <ion-toolbar>
     <ion-title>
       <a href="tabs"><ion-icon name="arrow-back"></ion-icon></a>
-      <img src="../../assets/avatar/terminator.png">
+      <img src="../../assets/default/grupo.png">
       <ion-label *ngIf="grupo">{{grupo.nmGrupo}}</ion-label>
-      <p (click)="adicionarContatosGrupo()">Adicionar integrantes</p>
+      <ion-icon *ngIf="isAdm()" (click)="adicionarContatosGrupo()" name="person-add"></ion-icon>
     </ion-title>
   </ion-toolbar>
 </ion-header>

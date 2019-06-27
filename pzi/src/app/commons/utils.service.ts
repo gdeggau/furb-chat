@@ -20,4 +20,9 @@ export class UtilsService {
     }
   }
 
+  logoff() {
+    localStorage.setItem('usuarioLogado', null);
+    this.router.navigate(['/login']);
+  }
+
 }

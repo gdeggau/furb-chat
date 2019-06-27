@@ -6,15 +6,24 @@
 
 <ion-content>
   <form [formGroup]="formUsuario" (ngSubmit)="cadastrar()">
-    <input type="text" formControlName="nmUsuario" placeholder="Nome completo">
-    <input type="text" formControlName="nmExibicao" placeholder="Nome de exibição">
-    <input type="date" formControlName="dtNascimento" placeholder="Data de nascimento">
-    <input type="number" formControlName="nrTelefone" placeholder="Número de telefone">
-    <input type="text" formControlName="dsEmail" placeholder="E-mail">
-    <input type="password" formControlName="dsSenha" placeholder="Senha">
-    <input type="password" formControlName="dsSenhaConf" placeholder="Confirmação de senha">
-    <!--input type="file"--><!--Foto de perfil-->
-    <textarea formControlName="dsFrasePerfil" placeholder="Frase de perfil"></textarea>
-    <input type="submit" value="Concluir cadastro">
+    <table>
+      <tr><ion-label position="floating">Nome completo</ion-label></tr>
+      <tr><ion-input type="text" formControlName="nmUsuario" placeholder="Nome completo"></ion-input></tr>
+      <tr><ion-label position="floating">Nome de exibição</ion-label></tr>
+      <tr><ion-input type="text" formControlName="nmExibicao" placeholder="Nome de exibição"></ion-input></tr>
+      <tr><ion-label position="floating">Data de nascimento</ion-label></tr>
+      <tr><ion-input type="date" formControlName="dtNascimento" placeholder="Data de nascimento"></ion-input></tr>
+      <tr><ion-label position="floating">Número de telefone</ion-label></tr>
+      <tr><ion-input type="number" formControlName="nrTelefone" placeholder="Número de telefone"></ion-input></tr>
+      <tr><ion-label position="floating">E-mail</ion-label></tr>
+      <tr><ion-input type="text" formControlName="dsEmail" placeholder="E-mail"></ion-input></tr>
+      <tr><ion-label position="floating">Senha</ion-label></tr>
+      <tr><ion-input type="password" formControlName="dsSenha" placeholder="Senha"></ion-input></tr>
+      <tr><ion-label position="floating">Confirmação de senha</ion-label></tr>
+      <tr><ion-input type="password" formControlName="dsSenhaConf" placeholder="Confirmação de senha"></ion-input></tr>
+      <tr><ion-label position="floating">Frase de perfil</ion-label></tr>
+      <tr><textarea formControlName="dsFrasePerfil" placeholder="Frase de perfil"></textarea></tr>
+      <tr><button ion-button>Concluir cadastro</button></tr>
+    </table>
   </form>
 </ion-content>

@@ -10,7 +10,8 @@
   <ion-list lines="inset">
     <ion-item (click)="abrirConversa(conversa)" *ngFor="let conversa of conversas">
       <ion-avatar slot="start">
-        <img src="../../assets/avatar/batman.png">
+        <img *ngIf="conversa.flDestino == 'U'" src="../../assets/default/usuario.png">
+        <img *ngIf="conversa.flDestino == 'G'" src="../../assets/default/grupo.png">
       </ion-avatar>
       <ion-label>
         <p class="titulo-conversa-grid">{{conversa.dsTituloConversa}}</p>

@@ -12,6 +12,10 @@ export class ContatosService {
         return this.http.get(AppConfigs.API_ENDPOINT + '/contatos/' + id);
     }
 
+    getContatosForaDoGrupo(idUsuario: number, idGrupo: number): Observable<any> {
+        return this.http.get(AppConfigs.API_ENDPOINT + '/grupos/usuarios/' + idUsuario + '/' + idGrupo);
+    }
+
     postContato(telefone: string, usuario: any) {
         this.http.post(AppConfigs.API_ENDPOINT + '/contatos/' + telefone, usuario).
         subscribe(contato => {
