@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.tomaggau.pzi.enums.Destino;
+import br.com.tomaggau.pzi.model.Contato;
 import br.com.tomaggau.pzi.model.Grupo;
 import br.com.tomaggau.pzi.model.GrupoUsuario;
 import br.com.tomaggau.pzi.model.Mensagem;
@@ -36,6 +37,7 @@ public class GrupoService {
 		grupo = grupoRepository.save(grupo);
 		adcionarUsuarioGrupo(grupo.getIdUsuarioCadastro(), grupo);
 		
+		/*
 		List<GrupoUsuario> membrosGrupo = grupoUsuarioRepository.findByIdGrupoAndDtInativacaoIsNull(grupo);
 		for (GrupoUsuario grupoUsuario : membrosGrupo) {
 			Mensagem mensagemBemVindo = new Mensagem();
@@ -43,7 +45,7 @@ public class GrupoService {
 			mensagemBemVindo.setIdUsuarioEnvio(us.findById(0l));
 			mensagemService.save(grupo.getIdGrupo(), mensagemBemVindo, Destino.GRUPO);
 			
-		}
+		}*/
 		
 		return grupo;
 	}
@@ -75,7 +77,7 @@ public class GrupoService {
 		grupoUsuario = grupoUsuarioRepository.save(grupoUsuario);
 		
 		Mensagem mensagemBemVindo = new Mensagem();
-		mensagemBemVindo.setDsMensagem("Olá "+ grupoUsuario.getIdUsuario().getNmExibicao() +", seja bem vindo ao grupo "+grupo.getNmGrupo());
+		mensagemBemVindo.setDsMensagem("Olá "+ grupoUsuario.getIdUsuario().getNmExibicao() +", seja bem vindo ao grupo "+grupo.getNmGrupo()+".");
 		mensagemBemVindo.setIdUsuarioEnvio(us.findById(0l));
 		mensagemService.save(grupo.getIdGrupo(), mensagemBemVindo, Destino.GRUPO);
 			
@@ -85,6 +87,10 @@ public class GrupoService {
 	//Remover usuario do grupo
 	public void removerUsuarioGrupo(Usuario usuario, Grupo grupo) {
 		
+	}
+	
+	public List<Contato> getContatosParaAdicionarAoGrupo(Long idOrigem, Long idGrupo){
+		return grupoRepository.getContatosParaAdicionarAoGrupo(idOrigem, idGrupo);
 	}
 
 }

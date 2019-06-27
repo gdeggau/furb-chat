@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import br.com.tomaggau.pzi.model.Usuario;
 import br.com.tomaggau.pzi.service.UsuarioService;
@@ -30,7 +32,7 @@ public class UsuarioController {
 	private UsuarioService usuarioService;
 	
 	@PostMapping("/usuarios")
-	public ResponseEntity<Usuario> salvarUsuario(@Valid @RequestBody Usuario usuarioEntity) throws Exception {
+	public ResponseEntity<Usuario> salvarUsuario(@Valid @RequestBody Usuario usuarioEntity, @RequestParam MultipartFile imagem) throws Exception {
 		if(usuarioService.findByNrTelefone(usuarioEntity.getNrTelefone()) != null)
 			throw new Exception("Este telefone já está cadastrado!");
 		usuarioEntity.setDtCadastro(LocalDateTime.now());

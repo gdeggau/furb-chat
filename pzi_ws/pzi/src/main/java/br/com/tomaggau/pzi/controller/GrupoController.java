@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.tomaggau.pzi.model.Contato;
 import br.com.tomaggau.pzi.model.Grupo;
 import br.com.tomaggau.pzi.model.GrupoUsuario;
 import br.com.tomaggau.pzi.model.Usuario;
@@ -76,6 +77,11 @@ public class GrupoController {
 		}
 		
 		return ResponseEntity.ok().body(grupoService.adcionarUsuarioGrupo(usuario, grupo));
+	}
+	
+	@GetMapping("/grupos/usuarios/{idOrigem}/{idGrupo}")
+	public ResponseEntity<List<Contato>> getContatosParaAdicionarAoGrupo(@PathVariable(value="idOrigem") Long idOrigem, @PathVariable(value="idGrupo") Long idGrupo){
+		return ResponseEntity.ok().body(grupoService.getContatosParaAdicionarAoGrupo(idOrigem, idGrupo));
 	}
 	
 	/*

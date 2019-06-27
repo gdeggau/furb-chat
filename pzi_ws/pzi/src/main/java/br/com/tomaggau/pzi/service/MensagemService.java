@@ -103,6 +103,7 @@ public class MensagemService {
 						achouUsuario = true;
 						if(mensagemRecebida.getDtEnvio().isAfter(mensagemEnviada.getDtEnvio())) {
 							mensagemRecebida.setDsTituloConversa(usuarioEnvio.getNmExibicao());
+							mensagemRecebida.setIdDestino(mensagemRecebida.getIdUsuarioEnvio().getIdUsuario());
 							mensagensFiltradas.add(mensagemRecebida);
 						} else {
 							mensagemEnviada.setDsTituloConversa(usuarioEnvio.getNmExibicao());
@@ -117,6 +118,7 @@ public class MensagemService {
 			}
 		} else {
 			for (Mensagem mensagRecebida : mensRecebidas) {
+				mensagRecebida.setIdDestino(mensagRecebida.getIdUsuarioEnvio().getIdUsuario());
 				mensagensFiltradas.add(mensagRecebida);
 			}
 		}
